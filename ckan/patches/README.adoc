@@ -1,0 +1,15 @@
+When building specific CKAN images, you can apply patches to CKAN core or any of the built extensions. To do this, create a folder in `ckan/patches` with the name of the package to be patched (e.g. ckan or ckanext-??). Inside you can put patch files that will be applied when building the images. The patches are applied in alphabetical order, so you can put them in sequential order if you like.
+
+For instance, check the following example image folder:
+
+[source,bash]
+----
+ckan
+├── patches
+│   ├── ckan
+│   │   ├── 01_datasets_per_page.patch
+│   │   ├── 02_groups_per_page.patch
+│   │   ├── 03_or_filters.patch
+│   └── ckanext-harvest
+│       └── 01_resubmit_objects.patch
+----
