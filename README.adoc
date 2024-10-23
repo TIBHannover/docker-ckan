@@ -39,6 +39,7 @@ CKAN and its dependencies (PostgreSQL, Solr, Redis, Nginx) are fully containeriz
 
 === Makefile for Easy Management
 A Makefile is provided to streamline the management of Docker Compose commands. Some key targets include:
+
 * `make build`: Build the containers. Required after changing Dockerfiles or files added to the containers.
 * `make up`: Starts the CKAN stack in the background.
 * `make down`: Stops and removes all containers, networks, and volumes (keeping data).
