@@ -1,2 +1,18 @@
 :project_name: docker-ckan
 = {project_name}
+This repository provides a complete setup for deploying CKAN using Docker Compose. CKAN is an open-source data management system that makes data accessible by providing tools to streamline publishing, sharing, finding, and using data.
+
+The deployment is composed of several Docker services, including CKAN itself, PostgreSQL for database management, Solr for search functionality, Redis for caching, and Nginx for handling SSL traffic. Additionally, the deployment includes the DataPusher service for handling resource uploads.
+
+We use `Make` as main entry point and command line interface to build, run and destroy {project_name} instances.
+
+== Key Features
+=== Dockerized CKAN Setup
+CKAN and its dependencies (PostgreSQL, Solr, Redis, Nginx) are fully containerized using Docker Compose, making it easy to spin up and manage the entire stack.
+
+=== Custom Initialization and Configuration
+* The setup includes custom entrypoint scripts that handle initialization tasks, such as:
+** Setting up plugins, including the CKAN `datapusher` plugin.
+** Automatically generating and configuring security tokens (e.g., JWT, session secrets).
+** Configuring system settings through environment variables and initialization scripts.
+* The initialization process uses Python-based scripts located in the `ckan/setup/` folder to manage essential CKAN setup tasks.
