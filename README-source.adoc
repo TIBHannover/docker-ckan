@@ -45,3 +45,20 @@ A Makefile is provided to streamline the management of Docker Compose commands. 
 * `make down`: Stops and removes all containers, networks, and volumes (keeping data).
 * `make show-logs`: Shows logs from all services in real-time.
 * `make destroy`: Completely tears down the environment, removing all associated volumes (including persistent data).
+
+=== Patches and Customizations
+The `ckan/` context includes support for applying patches to CKAN core and installed extensions. These patches are applied automatically during the build process, allowing for easy customization and updates.
+
+=== Environment-Driven Configuration
+The configuration of services is driven by environment variables defined in the `.env` file. This allows for flexible configuration of:
+
+* Service ports, database credentials, plugin activation, and more.
+* CKAN's core functionality, such as enabling plugins or configuring API tokens for services like DataPusher.
+
+See `.env.example` for a list of available environment variables.
+
+== Folder Structure
+* `nginx/`: Contains the Nginx Dockerfile and configuration files for serving CKAN over HTTPS.
+* `ckan/`: Includes the CKAN Dockerfile, custom entrypoint scripts (in `docker-entrypoint.d`), patches, and setup scripts.
+* `postgresql/`: Contains the Docker setup for PostgreSQL, including database initialization.
+* `setup/`: Houses the initialization scripts that handle database setup, plugin configuration, Solr checks, and sysadmin creation.
