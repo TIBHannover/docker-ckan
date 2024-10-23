@@ -28,3 +28,11 @@ CKAN and its dependencies (PostgreSQL, Solr, Redis, Nginx) are fully containeriz
 ** Automatically generating and configuring security tokens (e.g., JWT, session secrets).
 ** Configuring system settings through environment variables and initialization scripts.
 * The initialization process uses Python-based scripts located in the `ckan/setup/` folder to manage essential CKAN setup tasks.
+
+=== Modular Service Architecture
+* The repository is divided into distinct contexts for each service:
+** `nginx/`: Configures Nginx to act as a reverse proxy for CKAN, handling SSL termination.
+** `ckan/`: Builds CKAN from the `ckan-base` image, installs extensions, and applies patches. It also includes custom scripts in `docker-entrypoint.d/` to handle plugin setup (like DataPusher).
+** `postgresql/`: Sets up a PostgreSQL instance with a main CKAN database and a DataStore database.
+** `solr/`: Provides a Solr instance to power CKAN’s search functionality.
+** `redis/`: Configures Redis for caching CKAN's data.
