@@ -6,6 +6,18 @@ The deployment is composed of several Docker services, including CKAN itself, Po
 
 We use `Make` as main entry point and command line interface to build, run and destroy {project_name} instances.
 
+== Quick Start
+
+[source,bash]
+----
+git clone https://github.com/TIBHannover/docker-ckan
+cd docker-ckan
+cp .env.example .env
+make up
+----
+
+Open your browser at https://localhost:8443. Login as `ckan_admin` with password `test1234` (see `.env`).
+
 == Key Features
 === Dockerized CKAN Setup
 CKAN and its dependencies (PostgreSQL, Solr, Redis, Nginx) are fully containerized using Docker Compose, making it easy to spin up and manage the entire stack.
