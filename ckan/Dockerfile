@@ -1,6 +1,4 @@
-ARG CKAN_VERSION
-
-FROM ckan/ckan-base:${CKAN_VERSION}
+FROM ckan/ckan-base:2.10.5
 
 # Install any extensions needed by your CKAN instance
 # See Dockerfile.dev for more details and examples
