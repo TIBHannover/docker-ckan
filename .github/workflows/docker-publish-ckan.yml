@@ -1,4 +1,4 @@
-name: Publish docker image
+name: Publish ckan-ckan docker image
 
 on:
   release:
@@ -40,7 +40,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: ./ckan/context
+          context: ./ckan
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           push: true
