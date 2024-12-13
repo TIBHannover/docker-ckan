@@ -1,4 +1,5 @@
-FROM ckan/ckan-base:2.10.5
+# 2.10.5 fails (https://github.com/TIBHannover/docker-ckan/issues/1)
+FROM ckan/ckan-base:2.10.4
 
 # Install any extensions needed by your CKAN instance
 # See Dockerfile.dev for more details and examples
@@ -21,5 +22,5 @@ RUN for d in $APP_DIR/patches/*; do \
 ### Add extensions
 
 # TIB multiuploader (2023-01-13)
-RUN pip install -e git+https://github.com/TIBHannover/ckanext-multiuploader.git@49f5d02af2232f660e1637f4f6f8bdbfc1019082#egg=ckanext-multiuploader && \
-    pip install -r https://raw.githubusercontent.com/TIBHannover/ckanext-multiuploader/49f5d02af2232f660e1637f4f6f8bdbfc1019082/requirements.txt
+#RUN pip install -e git+https://github.com/TIBHannover/ckanext-multiuploader.git@49f5d02af2232f660e1637f4f6f8bdbfc1019082#egg=ckanext-multiuploader && \
+#    pip install -r https://raw.githubusercontent.com/TIBHannover/ckanext-multiuploader/49f5d02af2232f660e1637f4f6f8bdbfc1019082/requirements.txt
