@@ -1,5 +1,6 @@
-# 2.10.5 fails (https://github.com/TIBHannover/docker-ckan/issues/1)
-FROM ckan/ckan-base:2.10.4
+FROM ckan/ckan-base:2.10.6-py3.10
+
+USER root
 
 # Install any extensions needed by your CKAN instance
 # See Dockerfile.dev for more details and examples
@@ -21,6 +22,19 @@ RUN for d in $APP_DIR/patches/*; do \
 
 ### Add extensions
 
-# TIB multiuploader (2023-01-13)
-#RUN pip install -e git+https://github.com/TIBHannover/ckanext-multiuploader.git@49f5d02af2232f660e1637f4f6f8bdbfc1019082#egg=ckanext-multiuploader && \
-#    pip install -r https://raw.githubusercontent.com/TIBHannover/ckanext-multiuploader/49f5d02af2232f660e1637f4f6f8bdbfc1019082/requirements.txt
+# TIBHannover/ckanext-close-for-guests (1.0.0)
+RUN pip install -e git+https://github.com/TIBHannover/ckanext-close-for-guests@1.0.0#egg=ckanext-close-for-guests && \
+    pip install -r https://raw.githubusercontent.com/TIBHannover/ckanext-close-for-guests/1.0.0/requirements.txt
+
+# TIBHannover/ckanext-email-notification (1.1.0)
+RUN pip install -e git+https://github.com/TIBHannover/ckanext-email-notification@1.1.0#egg=ckanext-email-notification && \
+    pip install -r https://raw.githubusercontent.com/TIBHannover/ckanext-email-notification/1.1.0/requirements.txt
+
+# TIBHannover/ckanext-multiuploader (2.0.0)
+RUN pip install -e git+https://github.com/TIBHannover/ckanext-multiuploader.git@2.0.0#egg=ckanext-multiuploader && \
+    pip install -r https://raw.githubusercontent.com/TIBHannover/ckanext-multiuploader/2.0.0/requirements.txt
+
+# TIBHannover/ckanext-tif-imageview (1.1.0)
+RUN pip install -e git+https://github.com/TIBHannover/ckanext-tif-imageview.git@1.1.0#egg=ckanext-tif-imageview && \
+    pip install -r https://raw.githubusercontent.com/TIBHannover/ckanext-tif-imageview/1.1.0/requirements.txt
+
