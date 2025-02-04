@@ -20,6 +20,11 @@ RUN for d in $APP_DIR/patches/*; do \
         fi ; \
     done
 
+### Copy customization files
+COPY customization/logo.png ${APP_DIR}/src/ckan/ckan/public/base/images/logo.png
+# Theme needs to be tested
+#COPY customization/logo.png ${APP_DIR}/src/ckan/ckan/public/base/css/theme.css
+
 ### Add extensions
 
 # TIBHannover/ckanext-close-for-guests (1.0.0)

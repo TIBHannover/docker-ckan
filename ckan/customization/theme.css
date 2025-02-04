@@ -1,0 +1,29 @@
+/* This is a placeholder for a theme file */
+
+/* ========================================================================
+   The main masthead bar that contains the site logo, nav links, and search
+   ======================================================================== */
+
+.masthead {
+    background-color: #3d3d3d;
+}
+
+/* The "navigation pills" in the masthead (the links to Datasets,
+     Organizations, etc) when the user's pointer hovers over them. */
+.masthead .navigation .nav-pills li a:hover {
+    background-color: rgb(48, 48, 48);
+    color: white;
+}
+
+/* The "active" navigation pill (for example, when you're on the /dataset page
+     the "Datasets" link is active). */
+.masthead .navigation .nav-pills li.active a {
+    background-color: rgb(74, 74, 74);
+}
+
+/* The "box shadow" effect that appears around the search box when it
+     has the keyboard cursor's focus. */
+.masthead input[type="text"]:focus {
+    -webkit-box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.7);
+    box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.7);
+}
