@@ -1,5 +1,8 @@
 #!/bin/bash
 
+## Core
+ckan config-tool "$CKAN_INI" "WTF_CSRF_SSL_STRICT=${WTF_CSRF_SSL_STRICT:-true}"
+
 ## Branding
 ckan config-tool "$CKAN_INI" "ckan.site_title=${CKAN_SITE_TITLE:-CKAN}"
 ckan config-tool "$CKAN_INI" "ckan.site_logo=${CKAN_SITE_LOGO:-/base/images/ckan-logo.png}"
