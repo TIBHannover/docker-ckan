@@ -25,7 +25,11 @@ COPY customization/logo.png ${APP_DIR}/src/ckan/ckan/public/base/images/logo.png
 # Theme needs to be tested
 #COPY customization/logo.png ${APP_DIR}/src/ckan/ckan/public/base/css/theme.css
 
-### Add extensions
+### Add extensions (in alphabetical order)
+
+# TIBHannover/ckanext-cancel-dataset-creation (1.0.0)
+RUN pip install -e git+https://github.com/TIBHannover/ckanext-cancel-dataset-creation@1.0.0#egg=ckanext-cancel-dataset-creation && \
+    pip install -r https://raw.githubusercontent.com/TIBHannover/ckanext-cancel-dataset-creation/1.0.0/requirements.txt
 
 # TIBHannover/ckanext-close-for-guests (1.0.0)
 RUN pip install -e git+https://github.com/TIBHannover/ckanext-close-for-guests@1.0.0#egg=ckanext-close-for-guests && \
