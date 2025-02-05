@@ -35,6 +35,10 @@ RUN pip install -e git+https://github.com/TIBHannover/ckanext-cancel-dataset-cre
 RUN pip install -e git+https://github.com/TIBHannover/ckanext-close-for-guests@1.0.0#egg=ckanext-close-for-guests && \
     pip install -r https://raw.githubusercontent.com/TIBHannover/ckanext-close-for-guests/1.0.0/requirements.txt
 
+# TIBHannover/ckanext-dataset-metadata-automation (1.0.0)
+RUN pip install -e git+https://github.com/TIBHannover/ckanext-dataset-metadata-automation@1.0.0#egg=ckanext-dataset-metadata-automation && \
+    pip install -r https://raw.githubusercontent.com/TIBHannover/ckanext-dataset-metadata-automation/1.0.0/requirements.txt
+
 # TIBHannover/ckanext-email-notification (1.1.0)
 RUN pip install -e git+https://github.com/TIBHannover/ckanext-email-notification@1.1.0#egg=ckanext-email-notification && \
     pip install -r https://raw.githubusercontent.com/TIBHannover/ckanext-email-notification/1.1.0/requirements.txt
