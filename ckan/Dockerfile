@@ -37,6 +37,7 @@ RUN ckanext-install.sh ckanext-cancel-dataset-creation 1.0.0 && \
     ckanext-install.sh ckanext-email-notification 1.1.0 && \
     ckanext-install.sh ckanext-feature-image 1.0.1 && \
     ckanext-install.sh ckanext-multiuploader 2.0.0 && \
+    ckanext-install.sh ckanext-organization-group 1.0.0 && \
     ckanext-install.sh ckanext-tif-imageview 1.1.0 && \
     ckanext-install.sh ckanext-user-manual 1.0.0
 
