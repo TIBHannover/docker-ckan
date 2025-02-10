@@ -13,7 +13,7 @@ We use `Make` as main entry point and command line interface to build, run and d
 git clone https://github.com/TIBHannover/docker-ckan
 cd docker-ckan
 cp .env.example .env
-make up
+make build up
 ----
 
 Open your browser at https://localhost:8443. Login as `ckan_admin` with password `test1234` (see `.env`).
