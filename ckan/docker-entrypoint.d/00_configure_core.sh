@@ -2,6 +2,9 @@
 
 ## Core
 ckan config-tool "$CKAN_INI" "WTF_CSRF_SSL_STRICT=${WTF_CSRF_SSL_STRICT:-true}"
+# The storage_path is a container internal from the official ckan docker image and should not be changed
+# We write it here to ckan.ini to ensure it has the correct value
+ckan config-tool "$CKAN_INI" "ckan.storage_path=/var/lib/ckan"
 
 ## Branding
 ckan config-tool "$CKAN_INI" "ckan.site_title=${CKAN_SITE_TITLE:-CKAN}"
