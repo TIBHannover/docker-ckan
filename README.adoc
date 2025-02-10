@@ -13,6 +13,20 @@ We use `Make` as main entry point and command line interface to build, run and d
 git clone https://github.com/TIBHannover/docker-ckan
 cd docker-ckan
 cp .env.example .env
+----
+
+Create a `docker-compose.override.yml` with the following content:
+[source,yaml]
+----
+services:
+  ckan:
+    ports:
+      - 5000:5000
+----
+
+Run:
+[source,bash]
+----
 make build up
 ----
 
