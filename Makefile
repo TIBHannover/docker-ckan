@@ -47,3 +47,10 @@ down:
 destroy:
 	$(show-current-target)
 	$(compose) down --volumes --remove-orphans
+
+# ======== Develop ========
+
+.PHONY: bash
+bash:
+	$(show-current-target)
+	$(compose) exec ckan bash

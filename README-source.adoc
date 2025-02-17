@@ -59,6 +59,7 @@ A Makefile is provided to streamline the management of Docker Compose commands. 
 * `make down`: Stops and removes all containers, networks, and volumes (keeping data).
 * `make show-logs`: Shows logs from all services in real-time.
 * `make destroy`: Completely tears down the environment, removing all associated volumes (including persistent data).
+* `make bash`: Bash into the running CKAN container.
 
 === Patches and Customizations
 The `ckan/` context includes support for applying patches to CKAN core and installed extensions. These patches are applied automatically during the build process, allowing for easy customization and updates.
