@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## Modify the repoze config in who.ini
+
 ## Core
 ckan config-tool "$CKAN_INI" "WTF_CSRF_SSL_STRICT=${WTF_CSRF_SSL_STRICT:-true}"
 # The storage_path is a container internal from the official ckan docker image and should not be changed

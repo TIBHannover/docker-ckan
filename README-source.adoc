@@ -77,3 +77,45 @@ See `.env.example` for a list of available environment variables.
 * `ckan/`: Includes the CKAN Dockerfile, custom entrypoint scripts (in `docker-entrypoint.d`), patches, and setup scripts.
 * `postgresql/`: Contains the Docker setup for PostgreSQL, including database initialization.
 * `setup/`: Houses the initialization scripts that handle database setup, plugin configuration, Solr checks, and sysadmin creation.
+
+== Developing
+In the following section, we show how changes can be made to the CKAN extension "ckanext-organisation-group" and how these are immediately visible in the running containers. The customisation of CSS classes in a template serves as an example. Before we can make the actual changes, we need to make some preparations:
+
+=== 1) Clone the extension code next to CKAN Docker (`docker-ckan`)
+To be able to make changes independently of CKAN, it makes sense to check out the extension alongside CKAN Docker. This makes it easy to commit changes to the extension without having to change CKAN Docker.
+
+A typical directory might look like this:
+```
+drwxrwxrwx  6 alex  502 4096 Feb 17 18:17 ckanext-organization-group
+drwxr-xr-x  5 alex alex 4096 Jan 20 08:45 ckanext-system-stats
+drwxr-xr-x  5 alex alex 4096 Jan 23 10:52 ckanext-tif-imageview
+drwxr-xr-x  5 alex alex 4096 Jan 20 16:46 ckanext-user-manual
+drwxr-xr-x  7 alex alex 4096 Feb 17 16:05 docker-ckan
+```
+
+=== 2) Add a volume to `docker-compose.override.yaml` 
+Now we want to replace the code of the extension included in the container with the checked-out code. To do this, we use a so-called "volume" which is specified in `docker-compose.override.yaml`:
+
+```
+services:
+  ckan:
+    ports:
+      - 5000:5000
+    volumes:
+      - ~/_dev/github.com/TIBHannover/ckanext-organization-group:/srv/app/src/ckanext-organization-group
+```
+
+=== 3) Add a temporary startup script for the CKAN container
+Add a startup script `ckan/docker-entrypoint.d/99_dev.sh` with the following content. This script ensures that the correct file permissions and ownership are set, and that the installation is complete:
+
+```
+#!/bin/bash
+
+chgrp -R ckan-sys /srv/app/src
+find /srv/app/src -type d -exec chmod 777 {} \;
+pip install -e /srv/app/src/ckanext-organization-group
+pip install -r /srv/app/src/ckanext-organization-group/requirements.txt
+```
+
+=== 4) Build and run the conainers
+Run `make build bash` to build and run the containers including the volume and the startup script. All changes to the extension code are now "mirrored" directly in the container and are generally visible immediately.
