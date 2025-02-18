@@ -46,7 +46,10 @@ services:
       - site_packages:/usr/lib/python3.10/site-packages
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-qO", "/dev/null", "http://127.0.0.1:5000"]
+      test: ["CMD", "wget", "--timeout=9", "-qO", "/dev/null", "http://127.0.0.1:5000"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
     
   datapusher:
     networks:
