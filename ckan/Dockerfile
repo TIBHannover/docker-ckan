@@ -31,7 +31,7 @@ COPY customization/logo.png ${APP_DIR}/src/ckan/ckan/public/base/images/logo.png
 
 # Install CKAN extensions using ckanext-install.sh
 RUN ckanext-install.sh ckanext-cancel-dataset-creation 1.0.0 && \
-    ckanext-install.sh ckanext-close-for-guests 1.1.3 && \
+    ckanext-install.sh ckanext-close-for-guests 1.1.4 && \
     ckanext-install.sh ckanext-dataset-metadata-automation 1.0.0 && \
     ckanext-install.sh ckanext-Dataset-Reference 3.0.0 && \
     ckanext-install.sh ckanext-email-notification 1.1.0 && \
