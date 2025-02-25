@@ -1,4 +1,4 @@
-FROM ckan/ckan-base:2.10.6-py3.10
+FROM ckan/ckan-base:2.10.7-py3.10
 
 USER root
 
