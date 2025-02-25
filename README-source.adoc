@@ -94,7 +94,7 @@ drwxr-xr-x  7 alex alex 4096 Feb 17 16:05 docker-ckan
 ```
 
 === 2) Add a volume to `docker-compose.override.yaml` 
-Now we want to replace the code of the extension included in the container with the checked-out code. To do this, we use a so-called "volume" which is specified in `docker-compose.override.yaml`:
+Now we want to replace the code of the extension included in the container with the checked-out code. To do this, we use a so-called "volume" which is specified in `docker-compose.override.yaml`. The part before the colon (`~/_dev/github.com/TIBHannover/ckanext-organization-group`) in the example must be replaced by the abosulte path in the local environment.
 
 ```
 services:
