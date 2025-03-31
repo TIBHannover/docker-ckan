@@ -54,3 +54,21 @@ destroy:
 bash:
 	$(show-current-target)
 	$(compose) exec ckan bash
+
+# ======== Backup ========
+
+.PHONY: create-backup
+create-backup: pull-backup
+	$(show-current-target)
+	$(compose-run) backup create
+
+.PHONY: restore-backup
+restore-backup: pull-backup
+	$(show-current-target)
+	$(compose-run) -e RESTORE_OWNER=$(RESTORE_OWNER) backup restore
+	$(compose-exec) ckan ckan -c ckan.ini search-index rebuild
+
+.PHONY: pull-backup
+pull-backup:
+	$(show-current-target)
+	$(compose) pull backup

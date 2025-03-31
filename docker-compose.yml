@@ -90,7 +90,20 @@ services:
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "redis-cli", "-e", "QUIT"]
-    
+
+  backup:
+    image: ghcr.io/tibhannover/ckan-backup:${CKAN_BACKUP_VERSION:-latest}
+    networks:
+      - ckannet
+      - dbnet
+    volumes:
+      - ./backup:/backup
+      - ckan_storage:/var/lib/ckan
+    env_file:
+      - .env
+    profiles:
+      - no-up # don't start on 'docker-compose up'
+
 networks:
   webnet:
   ckannet:
