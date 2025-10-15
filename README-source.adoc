@@ -1,7 +1,7 @@
 :project_name: docker-ckan
 = {project_name}
 
-This repository provides a complete setup for deploying CKAN using Docker Compose. It is based on the https://github.com/ckan/ckan-docker-base[official Docker images for CKAN]. CKAN is an open-source data management system that makes data accessible by providing tools to streamline publishing, sharing, finding, and using data.
+This repository provides a complete setup for deploying CKAN using Docker Compose. It is based on the https://github.com/ckan/ckan-docker-base[official Docker images for CKAN] and the https://github.com/ckan/ckan-docker[official Docker Compose setup for CKAN]. CKAN is an open-source data management system that makes data accessible by providing tools to streamline publishing, sharing, finding, and using data.
 
 The deployment is composed of several Docker services, including CKAN itself, PostgreSQL for database management, Solr for search functionality, Redis for caching, and Nginx for handling SSL traffic. Additionally, the deployment includes the DataPusher service for handling resource uploads.
 
