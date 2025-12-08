@@ -36,7 +36,7 @@ RUN ckanext-install.sh TIBHannover/ckanext-cancel-dataset-creation 1.0.0 && \
     ckanext-install.sh TIBHannover/ckanext-Dataset-Reference 3.0.0 && \
     ckanext-install.sh TIBHannover/ckanext-email-notification 1.1.0 && \
     ckanext-install.sh TIBHannover/ckanext-feature-image 1.0.1 && \
-    ckanext-install.sh TIBHannover/ckanext-multiuploader 2.0.5 && \
+    ckanext-install.sh TIBHannover/ckanext-multiuploader 96b35bc3d2225e00049b23884e84102c6811722b && \
     ckanext-install.sh TIBHannover/ckanext-organization-group 1.0.0 && \
     ckanext-install.sh TIBHannover/ckanext-tif-imageview 1.1.0 && \
     ckanext-install.sh TIBHannover/ckanext-user-manual 1.0.0 && \
