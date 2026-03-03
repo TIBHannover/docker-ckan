@@ -73,6 +73,68 @@ The configuration of services is driven by environment variables defined in the 
 
 See `.env.example` for a list of available environment variables.
 
+CKAN environment configuration settings are controlled through YAML files in the configuration repository and are applied as Ansible variables. These variables can be defined at different levels (layers), allowing flexible overrides depending on scope.
+
+#### Configuration Layers
+
+Configuration values can be set at multiple levels:
+
+- Project level (recommended for most changes)
+
+- Instance level (alternative, depending on deployment needs)
+
+#### Modifying Environment Configuration
+
+To change an existing CKAN configuration:
+
+1. Locate the appropriate project-level YAML file.
+
+2. Add or modify the required configuration key.
+
+3. Ensure the change is committed and redeployed.
+
+4. Adding Missing Configuration
+
+If a configuration option is not already defined:
+
+Add it within the Docker image configuration structure:
+
+docker_image/
+  box/
+    config/
+
+Define the setting in the configuration repository as an Ansible variable.
+
+Assign the value at the desired layer (e.g., project level).
+
+Example
+
+To enable user creation via the web interface:
+
+ ckan.auth.create_user_via_web: true
+
+This setting was added/modified in the project-level YAML file and applied during deployment.
+
+ckan-config/
+  inventory/
+    group_vars/
+      project<name>.yml
+
+#### Notes
+
+- For major changes, Checking the docker container should always be the first-step
+- Configuration values are managed as Ansible variables, enabling layered overrides.
+
+- Project-level settings take precedence in most use cases.
+
+- Instance-level overrides are also supported if needed.
+
+== Folder Structure
+* `nginx/`: Contains the Nginx Dockerfile and configuration files for serving CKAN over HTTPS.
+* `ckan/`: Includes the CKAN Dockerfile, custom entrypoint scripts (in `docker-entrypoint.d`), patches, and setup scripts.
+* `postgresql/`: Contains the Docker setup for PostgreSQL, including database initialization.
+* `setup/`: Houses the initialization scripts that handle database setup, plugin configuration, Solr checks, and sysadmin creation.
+
 == Folder Structure
 * `nginx/`: Contains the Nginx Dockerfile and configuration files for serving CKAN over HTTPS.
 * `ckan/`: Includes the CKAN Dockerfile, custom entrypoint scripts (in `docker-entrypoint.d`), patches, and setup scripts.
