@@ -34,7 +34,7 @@ RUN if [ -f /tmp/customization/i18n/en/LC_MESSAGES/ckan.mo ]; then \
       mkdir -p ${APP_DIR}/src/ckan/ckan/i18n/en/LC_MESSAGES && \
       cp /tmp/customization/i18n/en/LC_MESSAGES/ckan.mo \
          ${APP_DIR}/src/ckan/ckan/i18n/en/LC_MESSAGES/ckan.mo ; \
-    fi \
+    fi
 
 ### Add extensions (in alphabetical order)
 
