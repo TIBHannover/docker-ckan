@@ -27,6 +27,9 @@ COPY customization/logo.png ${APP_DIR}/src/ckan/ckan/public/base/images/logo.png
 # Theme needs to be tested
 #COPY customization/logo.png ${APP_DIR}/src/ckan/ckan/public/base/css/theme.css
 
+# Change: "Private" to "HyPo-Internal"
+COPY customization/i18n/en_GB/LC_MESSAGES/ckan.mo /srv/app/src/ckan/ckan/i18n/en_GB/LC_MESSAGES/ckan.mo
+
 ### Add extensions (in alphabetical order)
 
 # Install CKAN extensions using ckanext-install.sh
