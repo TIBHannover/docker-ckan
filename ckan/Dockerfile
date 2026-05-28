@@ -28,7 +28,7 @@ COPY customization/logo.png ${APP_DIR}/src/ckan/ckan/public/base/images/logo.png
 #COPY customization/logo.png ${APP_DIR}/src/ckan/ckan/public/base/css/theme.css
 
 # Change: "Private" to "HyPo-Internal"
-COPY customization/i18n/en/LC_MESSAGES/ckan.mo ${APP_DIR}/src/ckan/ckan/i18n/en_GB/LC_MESSAGES/ckan.mo
+COPY customization/i18n/en/LC_MESSAGES/ckan.mo ${APP_DIR}/src/ckan/ckan/i18n/en/LC_MESSAGES/ckan.mo
 
 ### Add extensions (in alphabetical order)
 
