@@ -1,0 +1,126 @@
+
+======= build ========
+docker compose  build
+Compose can now delegate builds to bake for better performance.
+ To do so, set COMPOSE_BAKE=true.
+#0 building with "default" instance using docker driver
+
+#1 [db internal] load build definition from Dockerfile
+#1 transferring dockerfile: 195B done
+#1 DONE 0.0s
+
+#2 [db internal] load metadata for docker.io/library/postgres:12-alpine
+#2 DONE 0.4s
+
+#3 [db internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [db 1/2] FROM docker.io/library/postgres:12-alpine@sha256:7c8f4870583184ebadf7f17a6513620aac5f365a7938dc6a6911c1d5df2f481a
+#4 DONE 0.0s
+
+#5 [db internal] load build context
+#5 transferring context: 316B done
+#5 DONE 0.0s
+
+#6 [db 2/2] COPY --chown=postgres:postgres docker-entrypoint-initdb.d /docker-entrypoint-initdb.d
+#6 CACHED
+
+#7 [db] exporting to image
+#7 exporting layers done
+#7 writing image sha256:e64b76fa39ce3f83d2fb24382bd26fe804ed22326f33e85b2178054e8d3a7def done
+#7 naming to docker.io/library/docker-ckan-db done
+#7 DONE 0.0s
+
+#8 [db] resolving provenance for metadata file
+#8 DONE 0.0s
+
+#9 [ckan internal] load build definition from Dockerfile
+#9 transferring dockerfile: 1.93kB done
+#9 DONE 0.0s
+
+#10 [ckan internal] load metadata for docker.io/ckan/ckan-base:2.10.7-py3.10
+#10 DONE 0.4s
+
+#11 [ckan internal] load .dockerignore
+#11 transferring context: 2B done
+#11 DONE 0.0s
+
+#12 [ckan 1/8] FROM docker.io/ckan/ckan-base:2.10.7-py3.10@sha256:d029d4d041d656ca33b121bb8ca5db119c6509d9a8fec920955161783cd7cd70
+#12 DONE 0.0s
+
+#13 [ckan internal] load build context
+#13 transferring context: 671B done
+#13 DONE 0.0s
+
+#14 [ckan 5/8] COPY patches /srv/app/patches
+#14 CACHED
+
+#15 [ckan 3/8] RUN chmod +x /tools/*
+#15 CACHED
+
+#16 [ckan 2/8] COPY tools/* /tools/
+#16 CACHED
+
+#17 [ckan 4/8] COPY docker-entrypoint.d/* /docker-entrypoint.d/
+#17 CACHED
+
+#18 [ckan 6/8] RUN for d in /srv/app/patches/*; do         if [ -d $d ]; then             for f in `ls $d/*.patch | sort -g`; do                 cd /srv/app/src/`basename "$d"` && echo "$0: Applying patch $f to /srv/app/src/`basename $d`"; patch -p1 < "$f" ;             done ;         fi ;     done
+#18 CACHED
+
+#19 [ckan 7/8] COPY customization/logo.png /srv/app/src/ckan/ckan/public/base/images/logo.png
+#19 CACHED
+
+#20 [ckan 8/8] RUN ckanext-install.sh TIBHannover/ckanext-cancel-dataset-creation 1.0.0 &&     ckanext-install.sh TIBHannover/ckanext-close-for-guests 1.1.7 &&     ckanext-install.sh TIBHannover/ckanext-dataset-metadata-automation 1.0.0 &&     ckanext-install.sh TIBHannover/ckanext-Dataset-Reference 3.0.0 &&     ckanext-install.sh TIBHannover/ckanext-email-notification 1.1.0 &&     ckanext-install.sh TIBHannover/ckanext-feature-image 1.0.1 &&     ckanext-install.sh TIBHannover/ckanext-multiuploader 2.0.15-test &&     ckanext-install.sh TIBHannover/ckanext-organization-group 1.0.0 &&     ckanext-install.sh TIBHannover/ckanext-tif-imageview 1.1.0 &&     ckanext-install.sh TIBHannover/ckanext-user-manual 1.0.0 &&     ckanext-install.sh bhavin2897/ckanext-md_comp_layout 0.1.5 &&     ckanext-install.sh bhavin2897/ckanext-downloadall 2.0.2 &&     ckanext-install.sh TIBHannover/ckanext-crc1153 0.1.0
+#20 CACHED
+
+#21 [ckan] exporting to image
+#21 exporting layers done
+#21 writing image sha256:2f7efefeaf6e141c1545a8d4299ef9991a9cc923407545cfc000dc71b49e1a77 done
+#21 naming to docker.io/library/docker-ckan-ckan done
+#21 DONE 0.0s
+
+#22 [ckan] resolving provenance for metadata file
+#22 DONE 0.0s
+
+#23 [nginx internal] load build definition from Dockerfile
+#23 transferring dockerfile: 671B done
+#23 DONE 0.0s
+
+#24 [nginx internal] load metadata for docker.io/library/nginx:stable-alpine
+#24 DONE 0.4s
+
+#25 [nginx internal] load .dockerignore
+#25 transferring context: 2B done
+#25 DONE 0.0s
+
+#26 [nginx 1/6] FROM docker.io/library/nginx:stable-alpine@sha256:15e96e59aa3b0aada3a121296e3bce117721f42d88f5f64217ef4b18f458c6ab
+#26 DONE 0.0s
+
+#27 [nginx internal] load build context
+#27 transferring context: 137B done
+#27 DONE 0.0s
+
+#28 [nginx 3/6] COPY setup/nginx.conf /etc/nginx/nginx.conf
+#28 CACHED
+
+#29 [nginx 4/6] COPY setup/index.html /usr/share/nginx/html/index.html
+#29 CACHED
+
+#30 [nginx 2/6] RUN apk update --no-cache &&     apk upgrade --no-cache &&     apk add --no-cache openssl
+#30 CACHED
+
+#31 [nginx 5/6] COPY setup/default.conf /etc/nginx/conf.d/
+#31 CACHED
+
+#32 [nginx 6/6] RUN mkdir -p /etc/nginx/certs
+#32 CACHED
+
+#33 [nginx] exporting to image
+#33 exporting layers done
+#33 writing image sha256:91054997ad5985aadccd07f2d9189111ea43978d5329b102d3c8cb8a69622eae done
+#33 naming to docker.io/library/docker-ckan-nginx done
+#33 DONE 0.0s
+
+#34 [nginx] resolving provenance for metadata file
+#34 DONE 0.0s
