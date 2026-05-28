@@ -27,6 +27,15 @@ COPY customization/logo.png ${APP_DIR}/src/ckan/ckan/public/base/images/logo.png
 # Theme needs to be tested
 #COPY customization/logo.png ${APP_DIR}/src/ckan/ckan/public/base/css/theme.css
 
+# Change: "Private" to "HyPo-Internal"
+COPY customization /tmp/customization
+
+RUN if [ -f /tmp/customization/i18n/en_GB/LC_MESSAGES/ckan.mo ]; then \
+      mkdir -p ${APP_DIR}/src/ckan/ckan/i18n/en_GB/LC_MESSAGES && \
+      cp /tmp/customization/i18n/en_GB/LC_MESSAGES/ckan.mo \
+         ${APP_DIR}/src/ckan/ckan/i18n/en_GB/LC_MESSAGES/ckan.mo ; \
+    fi \
+
 ### Add extensions (in alphabetical order)
 
 # Install CKAN extensions using ckanext-install.sh
@@ -36,10 +45,8 @@ RUN ckanext-install.sh TIBHannover/ckanext-cancel-dataset-creation 1.0.0 && \
     ckanext-install.sh TIBHannover/ckanext-Dataset-Reference 3.0.0 && \
     ckanext-install.sh TIBHannover/ckanext-email-notification 1.1.0 && \
     ckanext-install.sh TIBHannover/ckanext-feature-image 1.0.1 && \
-    ckanext-install.sh TIBHannover/ckanext-multiuploader 96b35bc3d2225e00049b23884e84102c6811722b && \
+    ckanext-install.sh TIBHannover/ckanext-multiuploader 2.0.15-test && \
     ckanext-install.sh TIBHannover/ckanext-organization-group 1.0.0 && \
     ckanext-install.sh TIBHannover/ckanext-tif-imageview 1.1.0 && \
-    ckanext-install.sh TIBHannover/ckanext-user-manual 1.0.0 && \
-    ckanext-install.sh bhavin2897/ckanext-md_comp_layout 0.1.1
-
+    ckanext-install.sh TIBHannover/ckanext-user-manual 1.0.0
 
