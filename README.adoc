@@ -135,6 +135,12 @@ ckan-config/
 * `postgresql/`: Contains the Docker setup for PostgreSQL, including database initialization.
 * `setup/`: Houses the initialization scripts that handle database setup, plugin configuration, Solr checks, and sysadmin creation.
 
+== Folder Structure
+* `nginx/`: Contains the Nginx Dockerfile and configuration files for serving CKAN over HTTPS.
+* `ckan/`: Includes the CKAN Dockerfile, custom entrypoint scripts (in `docker-entrypoint.d`), patches, and setup scripts.
+* `postgresql/`: Contains the Docker setup for PostgreSQL, including database initialization.
+* `setup/`: Houses the initialization scripts that handle database setup, plugin configuration, Solr checks, and sysadmin creation.
+
 == Developing
 In the following section, we show how changes can be made to the CKAN extension "ckanext-organisation-group" and how these are immediately visible in the running containers. The customisation of CSS classes in a template serves as an example. Before we can make the actual changes, we need to make some preparations:
 
