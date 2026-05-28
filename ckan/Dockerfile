@@ -42,5 +42,5 @@ RUN ckanext-install.sh TIBHannover/ckanext-cancel-dataset-creation 1.0.0 && \
     ckanext-install.sh TIBHannover/ckanext-multiuploader 2.0.15-test && \
     ckanext-install.sh TIBHannover/ckanext-organization-group 1.0.0 && \
     ckanext-install.sh TIBHannover/ckanext-tif-imageview 1.1.0 && \
-    ckanext-install.sh TIBHannover/ckanext-user-manual 1.0.0 && \
+    ckanext-install.sh TIBHannover/ckanext-user-manual 1.0.0
 
