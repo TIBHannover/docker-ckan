@@ -30,10 +30,16 @@ COPY customization/logo.png ${APP_DIR}/src/ckan/ckan/public/base/images/logo.png
 # Change: "Private" to "HyPo-Internal"
 COPY customization /tmp/customization
 
-RUN if [ -f /tmp/customization/i18n/en/LC_MESSAGES/ckan.mo ]; then \
-      mkdir -p ${APP_DIR}/src/ckan/ckan/i18n/en/LC_MESSAGES && \
+RUN set -eux; \
+    echo "Listing /tmp/customization"; \
+    find /tmp/customization -maxdepth 6 -type f -print; \
+    if [ -f /tmp/customization/i18n/en/LC_MESSAGES/ckan.mo ]; then \
+      echo "FOUND custom en ckan.mo"; \
+      mkdir -p ${APP_DIR}/src/ckan/ckan/i18n/en/LC_MESSAGES; \
       cp /tmp/customization/i18n/en/LC_MESSAGES/ckan.mo \
-         ${APP_DIR}/src/ckan/ckan/i18n/en/LC_MESSAGES/ckan.mo ; \
+         ${APP_DIR}/src/ckan/ckan/i18n/en/LC_MESSAGES/ckan.mo; \
+    else \
+      echo "NO custom en ckan.mo found"; \
     fi
 
 ### Add extensions (in alphabetical order)
