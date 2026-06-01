@@ -2,3 +2,4 @@
 docker-compose.override.yml
 ckan/docker-entrypoint.d/99_dev.sh
 backup/ckan-backup.tar
+ckan/customization/**/*.mo

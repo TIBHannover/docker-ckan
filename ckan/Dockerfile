@@ -27,14 +27,19 @@ COPY customization/logo.png ${APP_DIR}/src/ckan/ckan/public/base/images/logo.png
 # Theme needs to be tested
 #COPY customization/logo.png ${APP_DIR}/src/ckan/ckan/public/base/css/theme.css
 
-# Change: "Private" to "HyPo-Internal"
+### i18n customization: compile all *.po files from customization/i18n/<lang>/LC_MESSAGES/
 COPY customization /tmp/customization
 
-RUN if [ -f /tmp/customization/i18n/en_GB/LC_MESSAGES/ckan.mo ]; then \
-      mkdir -p ${APP_DIR}/src/ckan/ckan/i18n/en_GB/LC_MESSAGES && \
-      cp /tmp/customization/i18n/en_GB/LC_MESSAGES/ckan.mo \
-         ${APP_DIR}/src/ckan/ckan/i18n/en_GB/LC_MESSAGES/ckan.mo ; \
-    fi \
+RUN if [ -d /tmp/customization/i18n ]; then \
+      find /tmp/customization/i18n -name "*.po" -type f | \
+      while IFS= read -r po; do \
+          lang="${po#/tmp/customization/i18n/}"; \
+          lang="${lang%%/*}"; \
+          mkdir -p "${APP_DIR}/src/ckan/ckan/i18n/${lang}/LC_MESSAGES"; \
+          pybabel compile -f -i "$po" \
+              -o "${APP_DIR}/src/ckan/ckan/i18n/${lang}/LC_MESSAGES/ckan.mo"; \
+      done; \
+    fi
 
 ### Add extensions (in alphabetical order)
 
