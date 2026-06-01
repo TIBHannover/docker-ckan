@@ -28,3 +28,13 @@ ckan config-tool "$CKAN_INI" "ckan.activity_streams_email_notifications=$CKAN_AC
 # We write it here to ckan.ini to ensure it has the correct value
 ckan config-tool "$CKAN_INI" "ckan.storage_path=/var/lib/ckan"
 ckan config-tool "$CKAN_INI" "ckan.max_resource_size=$CKAN_MAX_RESOURCE_SIZE"
+
+## Licensing
+LICENSES_FILE=/srv/app/src/ckan/ckan/config/licenses.json
+
+if [ -f "$LICENSES_FILE" ]; then
+  ckan config-tool "$CKAN_INI" \
+    "licenses_group_url=file://$LICENSES_FILE"
+else
+  echo "licenses.json not found, skipping licenses_group_url"
+fi
