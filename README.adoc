@@ -55,7 +55,7 @@ CKAN and its dependencies (PostgreSQL, Solr, Redis, Nginx) are fully containeriz
 === Makefile for Easy Management
 A Makefile is provided to streamline the management of Docker Compose commands. Some key targets include:
 
-* `make build`: Build the containers. Required after changing Dockerfiles or files added to the containers. 
+* `make build`: Build the containers. Required after changing Dockerfiles or files added to the containers.
 * `make up`: Starts the CKAN stack in the background.
 * `make down`: Stops and removes all containers, networks, and volumes (keeping data).
 * `make show-logs`: Shows logs from all services in real-time.
@@ -141,7 +141,7 @@ drwxr-xr-x  5 alex alex 4096 Jan 20 16:46 ckanext-user-manual
 drwxr-xr-x  7 alex alex 4096 Feb 17 16:05 docker-ckan
 ```
 
-=== 2) Add a volume to `docker-compose.override.yaml` 
+=== 2) Add a volume to `docker-compose.override.yaml`
 Now we want to replace the code of the extension included in the container with the checked-out code. To do this, we use a so-called "volume" which is specified in `docker-compose.override.yaml`. The part before the colon (`~/_dev/github.com/TIBHannover/ckanext-organization-group`) in the example must be replaced by the absolute path in the local environment.
 
 ```
