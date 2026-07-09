@@ -21,7 +21,7 @@ ckan config-tool "$CKAN_INI" "smtp.user=$CKAN_SMTP_USER"
 ckan config-tool "$CKAN_INI" "smtp.password=$CKAN_SMTP_PASSWORD"
 ckan config-tool "$CKAN_INI" "smtp.mail_from=$CKAN_SMTP_MAIL_FROM"
 ckan config-tool "$CKAN_INI" "smtp.reply_to=$CKAN_SMTP_REPLY_TO"
-ckan config-tool "$CKAN_INI" "ckan.activity_streams_email_notifications=$CKAN_ACTIVITY_STREAMS_EMAIL_NOTIFICATION"
+ckan config-tool "$CKAN_INI" "ckan.activity_streams_email_notifications=$CKAN_ACTIVITY_STREAMS_EMAIL_NOTIFICATIONS"
 
 ## Storage
 # The storage_path is a container internal from the official ckan docker image and should not be changed

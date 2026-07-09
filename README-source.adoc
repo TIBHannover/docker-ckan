@@ -66,78 +66,63 @@ A Makefile is provided to streamline the management of Docker Compose commands. 
 The `ckan/` context includes support for applying patches to CKAN core and installed extensions. These patches are applied automatically during the build process, allowing for easy customization and updates.
 
 === Environment-Driven Configuration
-The configuration of services is driven by environment variables defined in the `.env` file. This allows for flexible configuration of:
+The configuration of services is driven entirely by environment variables defined in the `.env` file (loaded via `env_file` in `docker-compose.yml`). This allows for flexible configuration of:
 
-* Service ports, database credentials, plugin activation, and more.
-* CKAN's core functionality, such as enabling plugins or configuring API tokens for services like DataPusher.
+* Service ports, database credentials, and container networking.
+* CKAN's core functionality, e.g. site title/logo, secrets, SMTP, storage limits.
+* Which of the built-in extensions are active, via `CKAN__PLUGINS` (see below).
+* API tokens and callback URLs for services like DataPusher.
 
-See `.env.example` for a list of available environment variables.
+`.env.example` is the authoritative, self-documenting reference for every available environment variable: it is organized into commented sections (Host & Network, Database, CKAN Core, Secrets, Sysadmin, E-Mail, Storage, Solr, Redis, DataPusher, Harvest, Extensions, Backup), with a comment above each variable (or group of variables) explaining its purpose and, where relevant, the default used when it is left unset. Consult it directly rather than a separate list here, so this README cannot drift out of sync with the actual variables. `.env` itself is git-tracked and only contains dummy/development values, so it is safe to inspect and copy as a starting point (`cp .env.example .env`).
 
-CKAN environment configuration settings are controlled through YAML files in the configuration repository and are applied as Ansible variables. These variables can be defined at different levels (layers), allowing flexible overrides depending on scope.
+Most of these variables are read at container startup by the scripts in `ckan/docker-entrypoint.d/` (e.g. `00_configure_core.sh` applies them to `ckan.ini` via `ckan config-tool`), so changing `.env` and running `make build up` again is normally enough — no image rebuild is required unless you changed a Dockerfile or a file that gets baked into the image (see <<plugins-baked-in>>).
 
-#### Configuration Layers
+[#plugins-baked-in]
+== Plugins: How CKAN Extensions Are Built Into the Image
+CKAN extensions are not installed at container startup or mounted at runtime — they are compiled into the `ckan` image at build time, pinned to an exact version. This keeps every environment built from the same image fully reproducible.
 
-Configuration values can be set at multiple levels:
+=== Installing an extension in the Dockerfile
+`ckan/Dockerfile` installs each extension with the helper script `ckan/tools/ckanext-install.sh`:
 
-- Project level (recommended for most changes)
+[source,dockerfile]
+----
+RUN ckanext-install.sh TIBHannover/ckanext-cancel-dataset-creation 1.0.0 && \
+    ckanext-install.sh TIBHannover/ckanext-close-for-guests 1.1.7 && \
+    ...
+----
 
-- Instance level (alternative, depending on deployment needs)
+`ckanext-install.sh <github-org/repo> <tag>`:
 
-#### Modifying Environment Configuration
+1. Installs the extension straight from GitHub at the given tag: `pip install -e "git+https://github.com/<repo>.git@<tag>#egg=<repo-name>"`.
+2. Installs that tag's `requirements.txt` from the same ref.
 
-To change an existing CKAN configuration:
+To add a new extension, add another `ckanext-install.sh` line (alphabetically) with the GitHub org/repo and the exact release tag you want pinned. To upgrade one, bump its tag and rebuild (`make build`).
 
-1. Locate the appropriate project-level YAML file.
+=== Activating an installed extension
+Being installed in the image does not mean it is active — CKAN only loads plugins listed in `CKAN__PLUGINS` in `.env`:
 
-2. Add or modify the required configuration key.
+[source,bash]
+----
+CKAN__PLUGINS="cancel_dataset_creation dataset_metadata_automation dataset_reference datatables_view datastore datapusher email_notification envvars feature_image image_view multiuploader text_view tif_imageview user_manual"
+----
 
-3. Ensure the change is committed and redeployed.
+The plugin name here is the extension's CKAN plugin entry point (usually documented in the extension's own README), not the pip/repo name. So adding an extension is a two-step process: install it in the Dockerfile, *and* add its plugin name to `CKAN__PLUGINS`, then rebuild.
 
-4. Adding Missing Configuration
+=== Patches
+Extensions (and CKAN core itself) can additionally be patched at build time. Patch files live under `ckan/patches/<package-name>/` (e.g. `ckan/patches/ckan/01_datasets_per_page.patch`) and are applied in alphabetical order during the Dockerfile build — see `ckan/patches/README.adoc`.
 
-If a configuration option is not already defined:
+=== Site customization (logo, theme, translations, licenses)
+`ckan/customization/` holds files that are baked into the image on top of the installed extensions:
 
-Add it within the Docker image configuration structure:
+* `logo.png` — copied over CKAN's default logo.
+* `theme.css` — custom theme stylesheet.
+* `i18n/<lang>/LC_MESSAGES/*.po` — any `.po` file found here is compiled with `pybabel` into `ckan.mo` at build time, letting you override or add translation strings per language (see `ckan/customization/i18n/en/LC_MESSAGES/ckan.po.example`).
 
-docker_image/
-  box/
-    config/
-
-Define the setting in the configuration repository as an Ansible variable.
-
-Assign the value at the desired layer (e.g., project level).
-
-Example
-
-To enable user creation via the web interface:
-
- ckan.auth.create_user_via_web: true
-
-This setting was added/modified in the project-level YAML file and applied during deployment.
-
-ckan-config/
-  inventory/
-    group_vars/
-      project<name>.yml
-
-#### Notes
-
-- For major changes, Checking the docker container should always be the first-step
-- Configuration values are managed as Ansible variables, enabling layered overrides.
-
-- Project-level settings take precedence in most use cases.
-
-- Instance-level overrides are also supported if needed.
+Licensing is configured at container startup instead of build time: if `ckan/src/ckan/ckan/config/licenses.json` exists in the image, `00_configure_core.sh` points `licenses_group_url` at it automatically.
 
 == Folder Structure
 * `nginx/`: Contains the Nginx Dockerfile and configuration files for serving CKAN over HTTPS.
-* `ckan/`: Includes the CKAN Dockerfile, custom entrypoint scripts (in `docker-entrypoint.d`), patches, and setup scripts.
-* `postgresql/`: Contains the Docker setup for PostgreSQL, including database initialization.
-* `setup/`: Houses the initialization scripts that handle database setup, plugin configuration, Solr checks, and sysadmin creation.
-
-== Folder Structure
-* `nginx/`: Contains the Nginx Dockerfile and configuration files for serving CKAN over HTTPS.
-* `ckan/`: Includes the CKAN Dockerfile, custom entrypoint scripts (in `docker-entrypoint.d`), patches, and setup scripts.
+* `ckan/`: Includes the CKAN Dockerfile, extension install tooling (`tools/ckanext-install.sh`), patches, site customization files (`customization/`), and custom entrypoint scripts (`docker-entrypoint.d/`).
 * `postgresql/`: Contains the Docker setup for PostgreSQL, including database initialization.
 * `setup/`: Houses the initialization scripts that handle database setup, plugin configuration, Solr checks, and sysadmin creation.
 
@@ -157,7 +142,7 @@ drwxr-xr-x  7 alex alex 4096 Feb 17 16:05 docker-ckan
 ```
 
 === 2) Add a volume to `docker-compose.override.yaml` 
-Now we want to replace the code of the extension included in the container with the checked-out code. To do this, we use a so-called "volume" which is specified in `docker-compose.override.yaml`. The part before the colon (`~/_dev/github.com/TIBHannover/ckanext-organization-group`) in the example must be replaced by the abosulte path in the local environment.
+Now we want to replace the code of the extension included in the container with the checked-out code. To do this, we use a so-called "volume" which is specified in `docker-compose.override.yaml`. The part before the colon (`~/_dev/github.com/TIBHannover/ckanext-organization-group`) in the example must be replaced by the absolute path in the local environment.
 
 ```
 services:
@@ -180,5 +165,7 @@ pip install -e /srv/app/src/ckanext-organization-group
 pip install -r /srv/app/src/ckanext-organization-group/requirements.txt
 ```
 
-=== 4) Build and run the conainers
+=== 4) Build and run the containers
 Run `make build bash` to build and run the containers including the volume and the startup script. All changes to the extension code are now "mirrored" directly in the container and are generally visible immediately.
+
+NOTE: This volume-mount workflow is for local development only. It is a shortcut to skip rebuilding the image on every code change, not an alternative way to ship extensions — production images always get extensions baked in as described above, pinned to a fixed version.
