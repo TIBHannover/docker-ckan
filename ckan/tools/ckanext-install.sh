@@ -15,4 +15,10 @@ REPO_NAME=$(basename "$REPO_PATH")
 pip install -e "git+https://github.com/$REPO_PATH.git@$VERSION#egg=$REPO_NAME"
 
 # Install the extension's requirements
-pip install -r "https://raw.githubusercontent.com/$REPO_PATH/$VERSION/requirements.txt"
+requirements_url="https://raw.githubusercontent.com/${repo}/${version}/requirements.txt"
+
+if curl --fail --silent --head "$requirements_url" >/dev/null; then
+    pip install -r "$requirements_url"
+else
+    echo "No requirements.txt found for ${repo}@${version}, skipping"
+fi
