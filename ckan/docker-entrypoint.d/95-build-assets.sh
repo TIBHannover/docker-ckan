@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
 echo "Building CKAN assets..."
-ckan -c $CKAN_INI asset build
+ckan -c "$CKAN_INI" asset build

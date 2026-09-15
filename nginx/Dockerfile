@@ -2,6 +2,7 @@ FROM nginx:stable-alpine
 
 ENV NGINX_DIR=/etc/nginx
 
+# hadolint ignore=DL3018
 RUN apk update --no-cache && \
     apk upgrade --no-cache && \
     apk add --no-cache openssl
@@ -12,6 +13,7 @@ COPY setup/default.conf ${NGINX_DIR}/conf.d/
 
 RUN mkdir -p ${NGINX_DIR}/certs
 
+# hadolint ignore=DL3025
 ENTRYPOINT \
   openssl req \
     -subj '/C=DE/ST=Berlin/L=Berlin/O=None/CN=localhost' \

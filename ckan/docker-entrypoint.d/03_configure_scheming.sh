@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
 if [ -n "${CKAN__SCHEMING__DATASET_SCHEMAS:-}" ]; then
     ckan config-tool "$CKAN_INI" \

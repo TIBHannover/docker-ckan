@@ -1,5 +1,7 @@
 FROM ckan/ckan-base:2.10.7-py3.10
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+# hadolint ignore=DL3002
 USER root
 
 COPY tools/* /tools/
@@ -14,10 +16,11 @@ COPY docker-entrypoint.d/* /docker-entrypoint.d/
 # runtime mounted ones)
 COPY patches ${APP_DIR}/patches
 
+# hadolint ignore=DL3003,SC2086
 RUN for d in $APP_DIR/patches/*; do \
-        if [ -d $d ]; then \
+        if [ -d "$d" ]; then \
             for f in `ls $d/*.patch | sort -g`; do \
-                cd $SRC_DIR/`basename "$d"` && echo "$0: Applying patch $f to $SRC_DIR/`basename $d`"; patch -p1 < "$f" ; \
+                cd "$SRC_DIR/$(basename "$d")" && echo "$0: Applying patch $f to $SRC_DIR/$(basename "$d")"; patch -p1 < "$f" ; \
             done ; \
         fi ; \
     done

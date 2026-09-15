@@ -55,6 +55,58 @@ bash:
 	$(show-current-target)
 	$(compose) exec ckan bash
 
+# ======== Lint ========
+
+dockerfiles = ckan/Dockerfile nginx/Dockerfile postgresql/Dockerfile
+shellfiles = $(shell git ls-files '*.sh')
+
+.PHONY: lint
+lint: lint-hadolint lint-shellcheck lint-compose
+
+.PHONY: lint-hadolint
+lint-hadolint:
+	$(show-current-target)
+	@for f in $(dockerfiles); do \
+		echo "--- hadolint $$f ---"; \
+		docker run --rm -i hadolint/hadolint < $$f || exit $$?; \
+	done
+
+.PHONY: lint-shellcheck
+lint-shellcheck:
+	$(show-current-target)
+	docker run --rm -v "$(CURDIR):/mnt:ro" -w /mnt koalaman/shellcheck $(shellfiles)
+
+.PHONY: lint-compose
+lint-compose:
+	$(show-current-target)
+	$(compose) config --quiet
+
+# ======== CI ========
+
+.PHONY: ci
+ci:
+	$(show-current-target)
+	$(compose) build
+	$(compose) up -d
+	@echo "Waiting for all services to become healthy..."
+	@timeout=300; \
+	while [ $$timeout -gt 0 ]; do \
+		unhealthy=$$(docker compose ps --format '{{.Health}}' | grep -v -E '^(healthy|)$$' || true); \
+		starting=$$(docker compose ps --format '{{.Health}}' | grep -c 'starting' || true); \
+		if [ -z "$$unhealthy" ] && [ "$$starting" -eq 0 ]; then \
+			echo "All services healthy."; \
+			$(compose) down; \
+			exit 0; \
+		fi; \
+		sleep 5; \
+		timeout=$$((timeout - 5)); \
+	done; \
+	echo "Timed out waiting for services to become healthy:"; \
+	$(compose) ps; \
+	$(compose) logs; \
+	$(compose) down; \
+	exit 1
+
 # ======== Backup ========
 
 .PHONY: create-backup
