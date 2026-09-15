@@ -15,6 +15,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Create .env from example
+        run: cp .env.example .env
+
       - name: Build images and run smoke test
         run: make ci
 
