@@ -95,6 +95,7 @@ ci:
 		starting=$$(docker compose ps --format '{{.Health}}' | grep -c 'starting' || true); \
 		if [ -z "$$unhealthy" ] && [ "$$starting" -eq 0 ]; then \
 			echo "All services healthy."; \
+			$(MAKE) ci-plugins || { $(compose) down; exit 1; }; \
 			$(compose) down; \
 			exit 0; \
 		fi; \
@@ -106,6 +107,26 @@ ci:
 	$(compose) logs; \
 	$(compose) down; \
 	exit 1
+
+.PHONY: ci-plugins
+ci-plugins:
+	$(show-current-target)
+	@echo "Checking that all configured plugins were actually loaded..."
+	@loaded=$$($(compose-exec) ckan python3 -c 'import json,urllib.request; print(" ".join(json.load(urllib.request.urlopen("http://127.0.0.1:5000/api/3/action/status_show"))["result"]["extensions"]))'); \
+	echo "Loaded plugins: $$loaded"; \
+	missing=""; \
+	configured=$$(echo '$(CKAN__PLUGINS)' | tr -d '"'); \
+	for p in $$configured; do \
+		case " $$loaded " in \
+			*" $$p "*) ;; \
+			*) missing="$$missing $$p" ;; \
+		esac; \
+	done; \
+	if [ -n "$$missing" ]; then \
+		echo "ERROR: configured plugin(s) not loaded by CKAN:$$missing"; \
+		exit 1; \
+	fi; \
+	echo "All configured plugins were loaded."
 
 # ======== Backup ========
 

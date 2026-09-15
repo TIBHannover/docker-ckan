@@ -9,3 +9,15 @@ Entries before this file was introduced are not reconstructed here; see the
 git tags for the earlier history.
 
 ## [Unreleased]
+
+### Added
+
+- `make ci` now verifies via the CKAN API that every plugin listed in
+  `CKAN__PLUGINS` was actually loaded, catching silently misconfigured or
+  broken extensions (`ci-plugins` target).
+
+### Changed
+
+- `.env.example`: added `organization_group` and `scheming_organizations` to
+  the active `CKAN__PLUGINS` list — both extensions are baked into the image
+  but were not enabled.
