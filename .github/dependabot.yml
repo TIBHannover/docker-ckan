@@ -1,0 +1,21 @@
+version: 2
+updates:
+  - package-ecosystem: docker
+    directory: /ckan
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: docker
+    directory: /nginx
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: docker
+    directory: /postgresql
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
