@@ -1,0 +1,8 @@
+diff --git a/ckanext/user_manual/public/statics/webassets.yml b/ckanext/user_manual/public/statics/webassets.yml
+index 8991960..66975ce 100644
+--- a/ckanext/user_manual/public/statics/webassets.yml
++++ b/ckanext/user_manual/public/statics/webassets.yml
+@@ -13,3 +13,2 @@ help-js:
+       - vendor/jquery
+-      - vendor/jquery.ui.core
+   contents:

@@ -1,0 +1,8 @@
+diff --git a/ckanext/cancel_dataset_creation/public/statics/webassets.yml b/ckanext/cancel_dataset_creation/public/statics/webassets.yml
+index 0df50c4..37f470e 100644
+--- a/ckanext/cancel_dataset_creation/public/statics/webassets.yml
++++ b/ckanext/cancel_dataset_creation/public/statics/webassets.yml
+@@ -13,3 +13,2 @@ cancel-dataset-creation-js:
+       - vendor/jquery
+-      - vendor/jquery.ui.core
+       - vendor/select2

@@ -12,17 +12,18 @@ ENV PATH="/tools:${PATH}"
 # Copy custom initialization scripts
 COPY docker-entrypoint.d/* /docker-entrypoint.d/
 
-# Apply any patches needed to CKAN core or any of the built extensions (not the
-# runtime mounted ones)
+# Copy compatibility patches. CKAN core patches are applied before extension
+# installation; extension patches are applied after their sources exist.
 COPY patches ${APP_DIR}/patches
 
-# hadolint ignore=DL3003,SC2086
-RUN for d in $APP_DIR/patches/*; do \
-        if [ -d "$d" ]; then \
-            for f in `ls $d/*.patch | sort -g`; do \
-                cd "$SRC_DIR/$(basename "$d")" && echo "$0: Applying patch $f to $SRC_DIR/$(basename "$d")"; patch -p1 < "$f" ; \
-            done ; \
-        fi ; \
+# Apply CKAN core patches while the base-image source is still untouched.
+# hadolint ignore=DL3003
+RUN set -e; \
+    shopt -s nullglob; \
+    for f in "${APP_DIR}"/patches/ckan/*.patch; do \
+        cd "${SRC_DIR}/ckan"; \
+        echo "$0: Applying patch $f to ${SRC_DIR}/ckan"; \
+        patch --batch --forward --fuzz=0 -p1 < "$f"; \
     done
 
 ### Copy customization files
@@ -59,3 +60,19 @@ RUN ckanext-install.sh TIBHannover/ckanext-cancel-dataset-creation 1.0.0 && \
     ckanext-install.sh TIBHannover/ckanext-user-manual 1.0.0 && \
     ckanext-install.sh TIBHannover/ckanext-scheming trr375-1.0.0
 
+# Apply temporary compatibility patches to the pinned extension sources.
+# Remove these patches after the corresponding fixes have tagged releases.
+# hadolint ignore=DL3003
+RUN set -e; \
+    shopt -s nullglob; \
+    for d in "${APP_DIR}"/patches/*; do \
+        [ -d "$d" ] || continue; \
+        [ "$(basename "$d")" != ckan ] || continue; \
+        target="${SRC_DIR}/$(basename "$d")"; \
+        [ -d "$target" ] || { echo "$0: Missing patch target $target" >&2; exit 1; }; \
+        for f in "$d"/*.patch; do \
+            cd "$target"; \
+            echo "$0: Applying patch $f to $target"; \
+            patch --batch --forward --fuzz=0 -p1 < "$f"; \
+        done; \
+    done

@@ -1,0 +1,16 @@
+diff --git a/ckanext/dataset_reference/public/statics/webassets.yml b/ckanext/dataset_reference/public/statics/webassets.yml
+index 4cfcb18..2faefb8 100644
+--- a/ckanext/dataset_reference/public/statics/webassets.yml
++++ b/ckanext/dataset_reference/public/statics/webassets.yml
+@@ -8,3 +8,2 @@ publication-info-table-js:
+       - vendor/jquery
+-      - vendor/jquery.ui.core
+       - vendor/select2
+@@ -32,3 +31,2 @@ publication-add-manually-js:
+       - vendor/jquery
+-      - vendor/jquery.ui.core
+       - vendor/select2
+@@ -50,3 +48,2 @@ publication-add-reference-js:
+       - vendor/jquery
+-      - vendor/jquery.ui.core
+       - vendor/select2

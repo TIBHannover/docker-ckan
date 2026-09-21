@@ -1,4 +1,8 @@
-When building specific CKAN images, you can apply patches to CKAN core or any of the built extensions. To do this, create a folder in `ckan/patches` with the name of the package to be patched (e.g. ckan or ckanext-??). Inside you can put patch files that will be applied when building the images. The patches are applied in alphabetical order, so you can put them in sequential order if you like.
+When building specific CKAN images, you can apply patches to CKAN core or any of the built extensions. To do this, create a folder in `ckan/patches` with the name of the source directory to be patched (e.g. `ckan` or `ckanext-??`). Inside you can put patch files whose names determine their application order.
+
+CKAN core patches under `ckan/patches/ckan` are applied before extensions are installed. Extension patches are applied after all pinned extension sources have been installed. The image build fails if a patch target is missing or a patch does not apply cleanly.
+
+The extension patches currently stored here are temporary compatibility fixes for CKAN 2.10.11. Remove each one after its extension has published a corrected patch release and `ckan/Dockerfile` has been updated to pin that release.
 
 For instance, check the following example image folder:
 

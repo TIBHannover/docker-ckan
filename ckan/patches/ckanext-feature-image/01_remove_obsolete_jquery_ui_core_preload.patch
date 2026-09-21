@@ -1,0 +1,12 @@
+diff --git a/ckanext/feature_image/public/statics/webassets.yml b/ckanext/feature_image/public/statics/webassets.yml
+index c987ab0..53a12a6 100644
+--- a/ckanext/feature_image/public/statics/webassets.yml
++++ b/ckanext/feature_image/public/statics/webassets.yml
+@@ -13,3 +13,2 @@ config-js:
+       - vendor/jquery
+-      - vendor/jquery.ui.core
+   contents:
+@@ -25,3 +24,2 @@ promoted-js:
+       - vendor/jquery
+-      - vendor/jquery.ui.core
+   contents:
