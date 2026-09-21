@@ -23,6 +23,13 @@ updates:
     directory: /postgresql
     schedule:
       interval: weekly
+    ignore:
+      # Postgres major upgrades require a manual pg_upgrade/dump-restore
+      # migration of the data volume, never just a tag bump. Minor/patch
+      # updates stay unrestricted.
+      - dependency-name: "postgres"
+        update-types:
+          - "version-update:semver-major"
 
   - package-ecosystem: github-actions
     directory: /

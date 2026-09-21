@@ -34,3 +34,6 @@ git tags for the earlier history.
 - Dependabot now only proposes patch-level updates for `ckan/ckan-base`,
   keeping this branch on its current CKAN minor version until a maintainer
   deliberately upgrades it.
+- Dependabot no longer proposes major-version updates for `postgres` —
+  a Postgres major upgrade requires a manual `pg_upgrade`/dump-restore
+  migration of the data volume, never just a tag bump.
