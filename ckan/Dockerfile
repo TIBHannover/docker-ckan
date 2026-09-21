@@ -1,4 +1,4 @@
-FROM ckan/ckan-base:2.10.7-py3.10
+FROM ckan/ckan-base:2.10.11-py3.10
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # hadolint ignore=DL3002

@@ -10,6 +10,16 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+### Breaking
+
+- `ckan/ckan-base` 2.10.11 introduced a reference to `EXTRA_UWSGI_OPTS` in
+  `start_ckan.sh` without a default, which crashes the `ckan` container at
+  startup (`unbound variable`) under `set -u` unless that variable is
+  defined. `.env.example` now defines `EXTRA_UWSGI_OPTS=` to keep the
+  container starting. Anyone maintaining their own `.env` (not regenerated
+  from `.env.example`) must add `EXTRA_UWSGI_OPTS=` themselves before
+  upgrading to this version.
+
 ### Added
 
 - `make ci` now verifies via the CKAN API that every plugin listed in
