@@ -21,3 +21,6 @@ git tags for the earlier history.
 - `.env.example`: added `organization_group` and `scheming_organizations` to
   the active `CKAN__PLUGINS` list — both extensions are baked into the image
   but were not enabled.
+- Dependabot now only proposes patch-level updates for `ckan/ckan-base`,
+  keeping this branch on its current CKAN minor version until a maintainer
+  deliberately upgrades it.

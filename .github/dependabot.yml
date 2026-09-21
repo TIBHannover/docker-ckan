@@ -4,6 +4,15 @@ updates:
     directory: /ckan
     schedule:
       interval: weekly
+    ignore:
+      # Only patch-level updates for CKAN (currently 2.10.x). When this
+      # branch moves to a new minor version, remove this ignore rule (or
+      # bump it) here and add the equivalent rule on the branch for the
+      # older minor version.
+      - dependency-name: "ckan/ckan-base"
+        update-types:
+          - "version-update:semver-major"
+          - "version-update:semver-minor"
 
   - package-ecosystem: docker
     directory: /nginx
