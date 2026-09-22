@@ -48,16 +48,16 @@ RUN if [ -d /tmp/customization/i18n ]; then \
 ### Add extensions (in alphabetical order)
 
 # Install CKAN extensions using ckanext-install.sh
-RUN ckanext-install.sh TIBHannover/ckanext-cancel-dataset-creation 1.0.0 && \
-    ckanext-install.sh TIBHannover/ckanext-close-for-guests 1.1.7 && \
-    ckanext-install.sh TIBHannover/ckanext-dataset-metadata-automation 1.0.0 && \
-    ckanext-install.sh TIBHannover/ckanext-Dataset-Reference 3.0.0 && \
-    ckanext-install.sh TIBHannover/ckanext-email-notification 1.1.0 && \
-    ckanext-install.sh TIBHannover/ckanext-feature-image 1.0.1 && \
-    ckanext-install.sh TIBHannover/ckanext-multiuploader 2.0.15-test && \
-    ckanext-install.sh TIBHannover/ckanext-organization-group 1.0.0 && \
-    ckanext-install.sh TIBHannover/ckanext-tif-imageview 1.1.0 && \
-    ckanext-install.sh TIBHannover/ckanext-user-manual 1.0.0 && \
+RUN ckanext-install.sh TIBHannover/ckanext-cancel-dataset-creation 1.0.2 && \
+    ckanext-install.sh TIBHannover/ckanext-close-for-guests 1.1.8 && \
+    ckanext-install.sh TIBHannover/ckanext-dataset-metadata-automation 1.0.1 && \
+    ckanext-install.sh TIBHannover/ckanext-Dataset-Reference 3.0.1 && \
+    ckanext-install.sh TIBHannover/ckanext-email-notification 1.1.1 && \
+    ckanext-install.sh TIBHannover/ckanext-feature-image 1.0.2 && \
+    ckanext-install.sh TIBHannover/ckanext-multiuploader 2.1.0 && \
+    ckanext-install.sh TIBHannover/ckanext-organization-group 1.0.1 && \
+    ckanext-install.sh TIBHannover/ckanext-tif-imageview 1.1.1 && \
+    ckanext-install.sh TIBHannover/ckanext-user-manual 1.0.1 && \
     ckanext-install.sh TIBHannover/ckanext-scheming trr375-1.0.0
 
 # Apply temporary compatibility patches to the pinned extension sources.

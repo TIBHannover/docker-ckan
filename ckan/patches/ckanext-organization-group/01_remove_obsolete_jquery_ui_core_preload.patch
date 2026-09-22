@@ -1,8 +1,0 @@
-diff --git a/ckanext/organization_group/public/statics/webassets.yml b/ckanext/organization_group/public/statics/webassets.yml
-index 7f478d7..045372f 100644
---- a/ckanext/organization_group/public/statics/webassets.yml
-+++ b/ckanext/organization_group/public/statics/webassets.yml
-@@ -13,3 +13,2 @@ ownership-js:
-       - vendor/jquery
--      - vendor/jquery.ui.core
-       - vendor/select2

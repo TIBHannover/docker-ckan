@@ -1,8 +1,0 @@
-diff --git a/ckanext/multiuploader/public/statics/webassets.yml b/ckanext/multiuploader/public/statics/webassets.yml
-index 069f757..00e5058 100644
---- a/ckanext/multiuploader/public/statics/webassets.yml
-+++ b/ckanext/multiuploader/public/statics/webassets.yml
-@@ -14,3 +14,2 @@ my-js:
-       - vendor/jquery
--      - vendor/jquery.ui.core
-   contents:

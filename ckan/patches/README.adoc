@@ -2,7 +2,7 @@ When building specific CKAN images, you can apply patches to CKAN core or any of
 
 CKAN core patches under `ckan/patches/ckan` are applied before extensions are installed. Extension patches are applied after all pinned extension sources have been installed. The image build fails if a patch target is missing or a patch does not apply cleanly.
 
-The extension patches currently stored here are temporary compatibility fixes for CKAN 2.10.11. Remove each one after its extension has published a corrected patch release and `ckan/Dockerfile` has been updated to pin that release.
+Extension patches stored here are typically temporary compatibility fixes. Remove each one once its extension has published a corrected release and `ckan/Dockerfile` has been updated to pin that release.
 
 For instance, check the following example image folder:
 
