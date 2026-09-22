@@ -47,6 +47,13 @@ git tags for the earlier history.
   `ckanext-tif-imageview` (1.1.0 → 1.1.1) and
   `ckanext-user-manual` (1.0.0 → 1.0.1) (#2). A related, still-open issue
   with the `vendor/select2` bundle is tracked separately.
+- Extensions preloading the `vendor/select2` webassets bundle (no longer
+  exposed as a standalone JS bundle in `ckan-base` 2.10.11 — the JS is
+  bundled inside `vendor/vendor` instead) were logging the same
+  `Trying to include unknown asset` error. Fixed by bumping
+  `ckanext-cancel-dataset-creation` (1.0.2 → 1.0.3),
+  `ckanext-Dataset-Reference` (3.0.1 → 3.0.2) and
+  `ckanext-organization-group` (1.0.1 → 1.0.2) (#12).
 
 ### Changed
 
