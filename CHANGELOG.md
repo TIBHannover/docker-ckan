@@ -54,6 +54,12 @@ git tags for the earlier history.
   `ckanext-cancel-dataset-creation` (1.0.2 → 1.0.3),
   `ckanext-Dataset-Reference` (3.0.1 → 3.0.2) and
   `ckanext-organization-group` (1.0.1 → 1.0.2) (#12).
+- `ckanext-cancel-dataset-creation`'s `IResourceController` implementation
+  only defined `before_create`, causing `package_show` to crash with
+  `AttributeError: ... has no attribute 'before_resource_show'` on any
+  dataset with at least one resource. Fixed by bumping
+  `ckanext-cancel-dataset-creation` (1.0.3 → 1.0.4), which implements the
+  full CKAN 2.10/2.11 resource callback interface.
 
 ### Changed
 
