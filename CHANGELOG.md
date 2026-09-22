@@ -25,6 +25,28 @@ git tags for the earlier history.
 - `make ci` now verifies via the CKAN API that every plugin listed in
   `CKAN__PLUGINS` was actually loaded, catching silently misconfigured or
   broken extensions (`ci-plugins` target).
+- `make ci` now also verifies that every webassets bundle registered by
+  CKAN core and the installed extensions actually resolves, catching
+  extensions that preload a vendor asset bundle no longer shipped by the
+  pinned `ckan-base` version (`ci-webassets` target). This is exactly the
+  class of bug behind the `vendor/jquery.ui.core` breakage below.
+
+### Fixed
+
+- Extensions preloading the `vendor/jquery.ui.core` webassets bundle
+  (removed from `ckan-base` 2.10.11, superseded by `vendor/reorder`) were
+  logging `Trying to include unknown asset` and silently dropping their
+  JS. Fixed by bumping `ckanext-cancel-dataset-creation` (1.0.0 → 1.0.2),
+  `ckanext-close-for-guests` (1.1.7 → 1.1.8),
+  `ckanext-dataset-metadata-automation` (1.0.0 → 1.0.1),
+  `ckanext-Dataset-Reference` (3.0.0 → 3.0.1),
+  `ckanext-email-notification` (1.1.0 → 1.1.1),
+  `ckanext-feature-image` (1.0.1 → 1.0.2),
+  `ckanext-multiuploader` (2.0.15-test → 2.1.0),
+  `ckanext-organization-group` (1.0.0 → 1.0.1),
+  `ckanext-tif-imageview` (1.1.0 → 1.1.1) and
+  `ckanext-user-manual` (1.0.0 → 1.0.1) (#2). A related, still-open issue
+  with the `vendor/select2` bundle is tracked separately.
 
 ### Changed
 
