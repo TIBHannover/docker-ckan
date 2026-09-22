@@ -96,6 +96,7 @@ ci:
 		if [ -z "$$unhealthy" ] && [ "$$starting" -eq 0 ]; then \
 			echo "All services healthy."; \
 			$(MAKE) ci-plugins || { $(compose) down; exit 1; }; \
+			$(MAKE) ci-webassets || { $(compose) down; exit 1; }; \
 			$(compose) down; \
 			exit 0; \
 		fi; \
@@ -127,6 +128,12 @@ ci-plugins:
 		exit 1; \
 	fi; \
 	echo "All configured plugins were loaded."
+
+.PHONY: ci-webassets
+ci-webassets:
+	$(show-current-target)
+	@echo "Checking that all registered webassets bundles resolve..."
+	$(compose-exec) ckan python3 /tools/check-webassets.py
 
 # ======== Backup ========
 
