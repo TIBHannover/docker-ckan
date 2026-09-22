@@ -10,6 +10,8 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+## [2.0.0]
+
 ### Breaking
 
 - `ckan/ckan-base` 2.10.11 introduced a reference to `EXTRA_UWSGI_OPTS` in
