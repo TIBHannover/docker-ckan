@@ -10,6 +10,31 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+### Breaking
+
+- Bumped `ckan/ckan-base` from `2.10.11-py3.10` to `2.11.6-py3.10`. CKAN
+  2.11 replaces Beaker sessions with Flask sessions: `beaker.session.key`
+  no longer has any effect and is replaced by `SESSION_COOKIE_NAME`.
+  Existing sessions stored in Redis cannot be deserialized with the new
+  session backend and will be dropped, logging out all currently logged-in
+  users on first restart after the upgrade.
+- `SECRET_KEY` is now mandatory. `.env.example`'s
+  `CKAN___BEAKER__SESSION__SECRET` had no effect under CKAN 2.11 (it mapped
+  to the now-unused `beaker.session.secret` setting) and is replaced by
+  `CKAN___SECRET_KEY`; `CKAN___WTF_CSRF_SECRET_KEY` is now also set
+  explicitly instead of relying on the `SECRET_KEY` fallback. Anyone
+  maintaining their own `.env` must add these two variables themselves
+  before upgrading, or CKAN will generate a new, unstable `SECRET_KEY` on
+  every container restart, invalidating all sessions each time.
+- The `ckan` service's `site_packages` volume mount moved from
+  `/usr/lib/python3.10/site-packages` to
+  `/usr/local/lib/python3.10/site-packages` — `ckan-base` 2.11 switched
+  its underlying OS from Alpine to Debian, which installs pip packages
+  under a different path. Anyone overriding this mount in their own
+  compose file must update the path.
+- Bumped `ckan/ckan-solr` from `2.10-solr9` to `2.11-solr9` to match the
+  CKAN 2.11 Solr schema.
+
 ## [2.0.0]
 
 ### Breaking

@@ -4,7 +4,7 @@ set -euo pipefail
 ## Modify the repoze config in who.ini
 
 ## Core
-ckan config-tool "$CKAN_INI" "beaker.session.key=${SESSION_COOKIE_NAME:-ckan}"
+ckan config-tool "$CKAN_INI" "SESSION_COOKIE_NAME=${SESSION_COOKIE_NAME:-ckan}"
 ckan config-tool "$CKAN_INI" "WTF_CSRF_SSL_STRICT=${WTF_CSRF_SSL_STRICT:-true}"
 ckan config-tool "$CKAN_INI" "ckan.auth.create_user_via_web=${CKAN_AUTH_CREATE_USER_VIA_WEB:-false}"
 # ckan config-tool "$CKAN_INI" "debug=true"
