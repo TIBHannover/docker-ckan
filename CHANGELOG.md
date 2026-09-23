@@ -61,6 +61,13 @@ git tags for the earlier history.
   restart without rebuilding to confirm all three upgrade steps are
   no-ops the second time around.
 
+### Fixed
+
+- Bumped `ckanext-feature-image` from `1.0.2` to `1.0.3`. The `1.0.2`
+  release tag was cut just before its CKAN 2.11 compatibility fix was
+  merged, so it was missing from that release despite being on `main`;
+  `1.0.3` includes it.
+
 ## [2.0.0]
 
 ### Breaking
