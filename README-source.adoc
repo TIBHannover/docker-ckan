@@ -124,6 +124,7 @@ Licensing is configured at container startup instead of build time: if `ckan/src
 * `nginx/`: Contains the Nginx Dockerfile and configuration files for serving CKAN over HTTPS.
 * `ckan/`: Includes the CKAN Dockerfile, extension install tooling (`tools/ckanext-install.sh`), patches, site customization files (`customization/`), and custom entrypoint scripts (`docker-entrypoint.d/`).
 * `postgresql/`: Contains the Docker setup for PostgreSQL, including database initialization.
+* `solr/`: Contains the Solr Dockerfile and its entrypoint wrapper, which recreates the Solr core automatically when the CKAN Solr schema changes.
 * `setup/`: Houses the initialization scripts that handle database setup, plugin configuration, Solr checks, and sysadmin creation.
 
 == Developing
