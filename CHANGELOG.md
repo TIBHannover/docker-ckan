@@ -60,6 +60,14 @@ git tags for the earlier history.
   the images, capture the Postgres/Solr/CKAN upgrade log markers, then
   restart without rebuilding to confirm all three upgrade steps are
   no-ops the second time around.
+- `make ci-integration` (now part of `make ci` and `make ci-upgrade`)
+  exercises the resource upload -> DataPusher -> DataStore pipeline
+  end to end via `ckan/tools/check-datastore-pipeline.py`: uploads a
+  real CSV through the live HTTP API, waits for CKAN's automatic
+  DataPusher submission to complete, and checks the data lands in the
+  DataStore. This is infrastructure shared by every extension that
+  ships resources but exercised by none of them individually, so it
+  belongs here rather than in any single extension's own tests.
 
 ### Fixed
 

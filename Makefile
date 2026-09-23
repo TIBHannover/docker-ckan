@@ -111,6 +111,7 @@ ci:
 	$(MAKE) wait-for-healthy || { $(compose) down; exit 1; }
 	$(MAKE) ci-plugins || { $(compose) down; exit 1; }
 	$(MAKE) ci-webassets || { $(compose) down; exit 1; }
+	$(MAKE) ci-integration || { $(compose) down; exit 1; }
 	$(compose) down
 
 # Verifies the in-place upgrade path with real volumes (not a fresh stack):
@@ -134,6 +135,7 @@ ci-upgrade:
 	$(compose) logs ckan | grep -iE "02_reindex_on_schema_change|search-index rebuild" || true
 	$(MAKE) ci-plugins || { $(compose) down; exit 1; }
 	$(MAKE) ci-webassets || { $(compose) down; exit 1; }
+	$(MAKE) ci-integration || { $(compose) down; exit 1; }
 	@echo "--- restarting to verify idempotence (no rebuild) ---"
 	$(compose) down
 	$(compose) up -d
@@ -169,6 +171,16 @@ ci-webassets:
 	$(show-current-target)
 	@echo "Checking that all registered webassets bundles resolve..."
 	$(compose-exec) ckan python3 /tools/check-webassets.py
+
+# Integration test for infrastructure shared across extensions (resource
+# upload, DataPusher, DataStore) that no single extension's own test suite
+# exercises. Business logic specific to one extension belongs in that
+# extension's own tests, not here.
+.PHONY: ci-integration
+ci-integration:
+	$(show-current-target)
+	@echo "Checking the resource upload -> DataPusher -> DataStore pipeline..."
+	$(compose-exec) ckan python3 /tools/check-datastore-pipeline.py
 
 # ======== Backup ========
 
