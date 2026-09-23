@@ -53,6 +53,14 @@ git tags for the earlier history.
   `postgresql/` are unaffected — `pgautoupgrade` supports the same
   contract as the official `postgres` image.
 
+### Added
+
+- `make ci-upgrade` verifies the in-place upgrade path against real,
+  already-populated volumes rather than a fresh stack: build and start
+  the images, capture the Postgres/Solr/CKAN upgrade log markers, then
+  restart without rebuilding to confirm all three upgrade steps are
+  no-ops the second time around.
+
 ## [2.0.0]
 
 ### Breaking

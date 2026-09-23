@@ -5,7 +5,7 @@ updates:
     schedule:
       interval: weekly
     ignore:
-      # Only patch-level updates for CKAN (currently 2.10.x). When this
+      # Only patch-level updates for CKAN (currently 2.11.x). When this
       # branch moves to a new minor version, remove this ignore rule (or
       # bump it) here and add the equivalent rule on the branch for the
       # older minor version.
@@ -24,12 +24,19 @@ updates:
     schedule:
       interval: weekly
     ignore:
-      # Postgres major upgrades require a manual pg_upgrade/dump-restore
-      # migration of the data volume, never just a tag bump. Minor/patch
-      # updates stay unrestricted.
-      - dependency-name: "postgres"
+      # Postgres major upgrades run through pgautoupgrade (see
+      # postgresql/Dockerfile), which automates pg_upgrade on the existing
+      # data volume on first start. Even so, a major bump stays a
+      # deliberate, manually reviewed step here, same as ckan-base above -
+      # Dependabot is restricted to minor/patch updates.
+      - dependency-name: "pgautoupgrade/pgautoupgrade"
         update-types:
           - "version-update:semver-major"
+
+  - package-ecosystem: docker
+    directory: /solr
+    schedule:
+      interval: weekly
 
   - package-ecosystem: github-actions
     directory: /

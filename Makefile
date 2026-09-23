@@ -83,11 +83,9 @@ lint-compose:
 
 # ======== CI ========
 
-.PHONY: ci
-ci:
+.PHONY: wait-for-healthy
+wait-for-healthy:
 	$(show-current-target)
-	$(compose) build
-	$(compose) up -d
 	@echo "Waiting for all services to become healthy..."
 	@timeout=300; \
 	while [ $$timeout -gt 0 ]; do \
@@ -95,9 +93,6 @@ ci:
 		starting=$$(docker compose ps --format '{{.Health}}' | grep -c 'starting' || true); \
 		if [ -z "$$unhealthy" ] && [ "$$starting" -eq 0 ]; then \
 			echo "All services healthy."; \
-			$(MAKE) ci-plugins || { $(compose) down; exit 1; }; \
-			$(MAKE) ci-webassets || { $(compose) down; exit 1; }; \
-			$(compose) down; \
 			exit 0; \
 		fi; \
 		sleep 5; \
@@ -106,8 +101,48 @@ ci:
 	echo "Timed out waiting for services to become healthy:"; \
 	$(compose) ps; \
 	$(compose) logs; \
-	$(compose) down; \
 	exit 1
+
+.PHONY: ci
+ci:
+	$(show-current-target)
+	$(compose) build
+	$(compose) up -d
+	$(MAKE) wait-for-healthy || { $(compose) down; exit 1; }
+	$(MAKE) ci-plugins || { $(compose) down; exit 1; }
+	$(MAKE) ci-webassets || { $(compose) down; exit 1; }
+	$(compose) down
+
+# Verifies the in-place upgrade path with real volumes (not a fresh stack):
+# run this on an already-running stack built from an older branch/image set
+# (e.g. the 2.x maintenance branch) to confirm the new images pick up the
+# existing pg_data/solr_data/ckan_storage volumes cleanly - Postgres major
+# upgrade, Solr schema reindex, DB migrations - and that a second restart
+# with no image change is a no-op on all of them. See also "make down"
+# (keeps volumes) vs. "make destroy" (removes them).
+.PHONY: ci-upgrade
+ci-upgrade:
+	$(show-current-target)
+	$(compose) build
+	$(compose) up -d
+	$(MAKE) wait-for-healthy || { $(compose) down; exit 1; }
+	@echo "--- db upgrade markers ---"; \
+	$(compose) logs db | grep -iE "upgrade to postgresql|skipping initialization" || true
+	@echo "--- solr schema markers ---"; \
+	$(compose) logs solr | grep -iE "docker-entrypoint-wrapper" || true
+	@echo "--- ckan reindex markers ---"; \
+	$(compose) logs ckan | grep -iE "02_reindex_on_schema_change|search-index rebuild" || true
+	$(MAKE) ci-plugins || { $(compose) down; exit 1; }
+	$(MAKE) ci-webassets || { $(compose) down; exit 1; }
+	@echo "--- restarting to verify idempotence (no rebuild) ---"
+	$(compose) down
+	$(compose) up -d
+	$(MAKE) wait-for-healthy || { $(compose) down; exit 1; }
+	@echo "--- db/solr/ckan markers after second start (expect no-ops) ---"; \
+	$(compose) logs db | grep -iE "upgrade to postgresql|skipping initialization" || true; \
+	$(compose) logs solr | grep -iE "docker-entrypoint-wrapper" || true; \
+	$(compose) logs ckan | grep -iE "02_reindex_on_schema_change|search-index rebuild|unchanged since" || true
+	$(compose) down
 
 .PHONY: ci-plugins
 ci-plugins:
