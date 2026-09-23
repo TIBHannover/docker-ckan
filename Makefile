@@ -57,7 +57,7 @@ bash:
 
 # ======== Lint ========
 
-dockerfiles = ckan/Dockerfile nginx/Dockerfile postgresql/Dockerfile
+dockerfiles = ckan/Dockerfile nginx/Dockerfile postgresql/Dockerfile solr/Dockerfile
 shellfiles = $(shell git ls-files '*.sh')
 
 .PHONY: lint

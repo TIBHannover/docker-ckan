@@ -74,9 +74,12 @@ services:
       test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}", "-d", "${POSTGRES_DB}"]
      
   solr:
+    build:
+      context: solr/
+      args:
+        - SOLR_IMAGE_VERSION=${SOLR_IMAGE_VERSION}
     networks:
       - solrnet
-    image: ckan/ckan-solr:${SOLR_IMAGE_VERSION}
     volumes:
       - solr_data:/var/solr
     restart: unless-stopped

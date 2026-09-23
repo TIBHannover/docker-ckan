@@ -33,7 +33,16 @@ git tags for the earlier history.
   under a different path. Anyone overriding this mount in their own
   compose file must update the path.
 - Bumped `ckan/ckan-solr` from `2.10-solr9` to `2.11-solr9` to match the
-  CKAN 2.11 Solr schema.
+  CKAN 2.11 Solr schema. This is now fully automated: the `solr` service
+  is built from a new local `solr/Dockerfile` wrapping `ckan/ckan-solr`,
+  which detects a schema mismatch on an existing `solr_data` volume and
+  recreates the Solr core from the image's configset; the `ckan` service
+  then detects the new schema and triggers a full `search-index rebuild`
+  via a new `ckan/docker-entrypoint.d/02_reindex_on_schema_change.sh`
+  script. Both steps are idempotent (tracked via the schema name reported
+  by Solr and a marker file on the `ckan_storage` volume) and require no
+  manual action — expect a longer first startup after this upgrade while
+  the index rebuilds, not a manual `ckan search-index rebuild` step.
 
 ## [2.0.0]
 
