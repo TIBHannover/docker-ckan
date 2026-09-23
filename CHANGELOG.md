@@ -43,6 +43,15 @@ git tags for the earlier history.
   by Solr and a marker file on the `ckan_storage` volume) and require no
   manual action — expect a longer first startup after this upgrade while
   the index rebuilds, not a manual `ckan search-index rebuild` step.
+- Bumped the `db` service's base image from `postgres:12.22-alpine` to
+  `pgautoupgrade/pgautoupgrade:16.15-alpine`. On an existing `pg_data`
+  volume this automatically runs `pg_upgrade` on first start (a one-time
+  longer startup while all databases are upgraded and reindexed), rather
+  than requiring a manual dump/restore. A fresh volume is initialized
+  directly on Postgres 16 as before; a second restart after the upgrade
+  is a no-op. The `docker-entrypoint-initdb.d` scripts under
+  `postgresql/` are unaffected — `pgautoupgrade` supports the same
+  contract as the official `postgres` image.
 
 ## [2.0.0]
 
