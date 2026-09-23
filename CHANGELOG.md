@@ -10,6 +10,8 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+## [3.0.0]
+
 ### Breaking
 
 - Bumped `ckan/ckan-base` from `2.10.11-py3.10` to `2.11.6-py3.10`. CKAN
