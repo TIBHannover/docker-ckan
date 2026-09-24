@@ -50,6 +50,7 @@ RUN if [ -d /tmp/customization/i18n ]; then \
 # Install CKAN extensions using ckanext-install.sh
 RUN ckanext-install.sh TIBHannover/ckanext-cancel-dataset-creation 1.0.4 && \
     ckanext-install.sh TIBHannover/ckanext-close-for-guests 1.1.8 && \
+    ckanext-install.sh TIBHannover/ckanext-crc1153 1.0.0 && \
     ckanext-install.sh TIBHannover/ckanext-dataset-metadata-automation 1.0.1 && \
     ckanext-install.sh TIBHannover/ckanext-Dataset-Reference 3.0.2 && \
     ckanext-install.sh TIBHannover/ckanext-email-notification 1.1.1 && \

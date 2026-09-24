@@ -10,6 +10,10 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+### Added
+
+- `ckanext-crc1153` 1.0.0 (CKAN extension for the CRC/SFB 1153 project).
+
 ## [3.0.0]
 
 ### Breaking
