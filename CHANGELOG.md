@@ -14,6 +14,12 @@ git tags for the earlier history.
 
 - `ckanext-crc1153` 1.0.0 (CKAN extension for the CRC/SFB 1153 project).
 
+### Fixed
+
+- `ckanext-install.sh` now fails the build on a broken extension install
+  (bad tag, wrong repo, mismatched package name) instead of silently
+  continuing.
+
 ## [3.0.0]
 
 ### Breaking
