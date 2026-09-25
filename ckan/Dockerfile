@@ -66,9 +66,7 @@ RUN ckanext-install.sh TIBHannover/ckanext-cancel-dataset-creation 1.0.4 && \
     ckanext-install.sh TIBHannover/ckanext-Semantic-Media-Wiki 1.0.0 && \
     ckanext-install.sh TIBHannover/ckanext-sfb-search 1.0.0 && \
     ckanext-install.sh TIBHannover/ckanext-ckanext-data-comparison 1.0.0 && \
-    ckanext-install.sh TIBHannover/ckanext-resource-custom-metadata 1.0.2 \
-
-
+    ckanext-install.sh TIBHannover/ckanext-resource-custom-metadata 1.0.2
 
 # Apply temporary compatibility patches to the pinned extension sources.
 # Remove these patches after the corresponding fixes have tagged releases.
