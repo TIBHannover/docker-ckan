@@ -19,6 +19,10 @@ git tags for the earlier history.
 - `ckanext-install.sh` now fails the build on a broken extension install
   (bad tag, wrong repo, mismatched package name) instead of silently
   continuing.
+- Added a `start_period` to the `ckan` service healthcheck so the extra
+  boot time from additional installed extensions (DB migrations, asset
+  rebuild) no longer risks the container flipping to `unhealthy` before
+  it has finished starting.
 
 ## [3.0.0]
 
