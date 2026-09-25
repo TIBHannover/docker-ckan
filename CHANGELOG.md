@@ -10,6 +10,8 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+## [3.1.0]
+
 ### Added
 
 - `ckanext-crc1153` 1.0.0 (CKAN extension for the CRC/SFB 1153 project).
@@ -23,6 +25,9 @@ git tags for the earlier history.
   boot time from additional installed extensions (DB migrations, asset
   rebuild) no longer risks the container flipping to `unhealthy` before
   it has finished starting.
+- `.env.example`'s default `CKAN__PLUGINS` now enables `harvest` and
+  `dcat`, which were installed but not activated, so harvesting and DCAT
+  endpoints work out of the box.
 
 ## [3.0.0]
 
