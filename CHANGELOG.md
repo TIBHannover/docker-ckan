@@ -10,6 +10,18 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+### Added
+
+- Added the SFB1153 CKAN extensions and startup configuration for Semantic
+  MediaWiki and Apache Jena integration. `.env.example` now documents the
+  `CKAN_SMW_*` and `CKAN_APACHE_JENA_ENDPOINT` settings and includes an
+  example plugin configuration for `machine_link`, `sample_link`, and
+  `crc1153_dcat_profile`.
+
+### Changed
+
+- Updated the pinned SFB1153 extension releases used by the CKAN image.
+
 ## [3.1.0]
 
 ### Added
