@@ -10,6 +10,8 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+## [3.2.0]
+
 ### Added
 
 - New `ckan/docker-entrypoint.d/04_configure_sfb1153.sh` writes the
@@ -33,13 +35,30 @@ git tags for the earlier history.
 
 ### Changed
 
-- Bumped `ckanext-crc1153` (1.0.0 → 1.0.3),
-  `ckanext-Dataset-Reference` (3.0.2 → 3.0.3),
-  `ckanext-organization-group` (1.0.2 → 1.0.3),
-  `ckanext-user-manual` (1.0.1 → 1.0.2),
-  `ckanext-dataset-transfer` (1.0.0 → 1.0.1),
-  `ckanext-Semantic-Media-Wiki` (3.0.0 → 3.0.2) and
-  `ckanext-data-comparison` (1.0.1 → 1.0.2) (#15).
+- Bumped the SFB1153 extensions (#15):
+  - `ckanext-crc1153` (1.0.0 → 1.0.3)
+    - Fixed a page template error under CKAN 2.11 and an error in the page
+      header.
+    - Fixed the error page (HTTP 500) when opening a resource, including in
+      the SFB layout.
+  - `ckanext-Dataset-Reference` (3.0.2 → 3.0.3)
+    - The button and dialog for linking a publication work again under
+      CKAN 2.11 (opening and closing the dialog).
+    - Submitting and validating a reference is no longer rejected for a
+      missing CSRF token.
+  - `ckanext-Semantic-Media-Wiki` (3.0.0 → 3.0.2)
+    - Fixed a configuration-related error under CKAN 2.11.
+    - Fixed an error on the machine link and sample link resource pages
+      caused by an undefined helper.
+  - `ckanext-organization-group` (1.0.2 → 1.0.3)
+    - Fixed a configuration-related error under CKAN 2.11.
+  - `ckanext-user-manual` (1.0.1 → 1.0.2)
+    - Fixed a configuration-related error under CKAN 2.11.
+  - `ckanext-data-comparison` (1.0.1 → 1.0.2)
+    - Fixed a configuration-related error under CKAN 2.11.
+  - `ckanext-dataset-transfer` (1.0.0 → 1.0.1)
+    - Fixed the display of dataset entries in the transfer list under
+      CKAN 2.11.
 - Deployments that already enable `machine_link`, `sample_link` or
   `protocol_link` must now set `CKAN_SMW_BASE_URL` and
   `CKAN_SMW_API_ENDPOINT` in their `.env`, otherwise the `ckan` container
