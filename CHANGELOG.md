@@ -10,17 +10,64 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+### Changed
+
+- Bumped `ckanext-crc1153` from 1.0.3 to 1.0.5 to include the latest
+  SFB1153 CSS and page layout fixes.
+
+## [3.2.0]
+
 ### Added
 
-- Added the SFB1153 CKAN extensions and startup configuration for Semantic
-  MediaWiki and Apache Jena integration. `.env.example` now documents the
-  `CKAN_SMW_*` and `CKAN_APACHE_JENA_ENDPOINT` settings and includes an
-  example plugin configuration for the SFB1153 extensions, including
-  `machine_link`, `sample_link`, `protocol_link`, and the `crc1153_*` plugins.
+- New `ckan/docker-entrypoint.d/04_configure_sfb1153.sh` writes the
+  mixed-case legacy settings of the SFB1153 extensions into the CKAN
+  config, since `ckanext-envvars` would lowercase them. It only acts when
+  the corresponding plugin is enabled in `CKAN__PLUGINS`, so other flavours
+  are unaffected:
+  - With `machine_link`, `sample_link` or `protocol_link` enabled it sets
+    `ckanext.smw.baseUrl` and `ckanext.smw.mediaWiki.api.endpont` from
+    `CKAN_SMW_BASE_URL` and `CKAN_SMW_API_ENDPOINT`, and aborts the start
+    if either is empty. There are no site-specific defaults in the image.
+  - If `CKAN_SMW_USERNAME` and `CKAN_SMW_PASSWORD` are set, it writes them
+    to the file at `CKAN_SMW_CREDENTIALS_PATH` (mode `0600`) and sets
+    `ckanext.mediaWiki_credentials_path`; without credentials, only
+    authenticated SMW actions are disabled.
+  - With `crc1153_dcat_profile` enabled and `CKAN_APACHE_JENA_ENDPOINT`
+    set, it sets `ckanext.apacheJena.endpoint`.
+- `.env.example` documents the `CKAN_SMW_*` and `CKAN_APACHE_JENA_ENDPOINT`
+  variables and contains an example `CKAN__PLUGINS` line for the SFB1153
+  plugins (#15).
 
 ### Changed
 
-- Updated the pinned SFB1153 extension releases used by the CKAN image.
+- Bumped the SFB1153 extensions (#15):
+  - `ckanext-crc1153` (1.0.0 → 1.0.3)
+    - Fixed a page template error under CKAN 2.11 and an error in the page
+      header.
+    - Fixed the error page (HTTP 500) when opening a resource, including in
+      the SFB layout.
+  - `ckanext-Dataset-Reference` (3.0.2 → 3.0.3)
+    - The button and dialog for linking a publication work again under
+      CKAN 2.11 (opening and closing the dialog).
+    - Submitting and validating a reference is no longer rejected for a
+      missing CSRF token.
+  - `ckanext-Semantic-Media-Wiki` (3.0.0 → 3.0.2)
+    - Fixed a configuration-related error under CKAN 2.11.
+    - Fixed an error on the machine link and sample link resource pages
+      caused by an undefined helper.
+  - `ckanext-organization-group` (1.0.2 → 1.0.3)
+    - Fixed a configuration-related error under CKAN 2.11.
+  - `ckanext-user-manual` (1.0.1 → 1.0.2)
+    - Fixed a configuration-related error under CKAN 2.11.
+  - `ckanext-data-comparison` (1.0.1 → 1.0.2)
+    - Fixed a configuration-related error under CKAN 2.11.
+  - `ckanext-dataset-transfer` (1.0.0 → 1.0.1)
+    - Fixed the display of dataset entries in the transfer list under
+      CKAN 2.11.
+- Deployments that already enable `machine_link`, `sample_link` or
+  `protocol_link` must now set `CKAN_SMW_BASE_URL` and
+  `CKAN_SMW_API_ENDPOINT` in their `.env`, otherwise the `ckan` container
+  fails to start (#15).
 
 ## [3.1.0]
 
