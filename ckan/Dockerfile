@@ -68,7 +68,7 @@ RUN ckanext-install.sh TIBHannover/ckanext-cancel-dataset-creation 1.0.4 && \
     ckanext-install.sh TIBHannover/ckanext-dataset_metadata_automation 1.0.1 && \
     ckanext-install.sh TIBHannover/ckanext-data-comparison 1.0.2 && \
     ckanext-install.sh TIBHannover/ckanext-resource-custom-metadata 1.0.2 && \
-    ckanext-install.sh bhavin2897/ckanext-downloadall 3e6e49a7ec0bf47b9c3099788481a85ef2edfa18
+    # ckanext-install.sh bhavin2897/ckanext-downloadall 3e6e49a7ec0bf47b9c3099788481a85ef2edfa18
 
 # Apply temporary compatibility patches to the pinned extension sources.
 # Remove these patches after the corresponding fixes have tagged releases.
