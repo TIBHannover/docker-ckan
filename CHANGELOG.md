@@ -10,20 +10,25 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+## [3.3.0]
+
 ### Added
 
-- Added `ckanext_sfb_layout` 1.0.5 to the installed extensions. This is a
-  key extension for the SFB1368-specific site layout. Version 1.0.5 fixes
-  the webassets that failed to resolve in 1.0.4.
+- `ckanext_sfb_layout` 1.0.5
+  - Added the SFB1368-specific site layout. Version 1.0.5 fixes the page
+    assets that failed to load in 1.0.4.
 
 ### Changed
 
-- Bumped `ckanext-crc1153` from 1.0.3 to 1.0.5 to include the latest
-  SFB1153 CSS and page layout fixes.
-- Bumped `ckanext-Semantic-Media-Wiki` from 3.0.2 to 3.1.0 for the shared
-  Semantic MediaWiki integration used by the project deployments. This
-  release removes the empty machine bundle and adds the missing database
-  migration for the `machine_link` plugin.
+- `ckanext-crc1153`: 1.0.3 → 1.0.5
+  - Includes the latest SFB1153 CSS and page layout fixes.
+- `ckanext-Semantic-Media-Wiki`: 3.0.2 → 3.1.0
+  - Fixed the Equipment, Sample and Protocol dialogs: they now open and
+    submit correctly on CKAN 2.11.
+  - Fixed database setup for the machine link feature, so it now installs
+    and upgrades cleanly, including on existing installations.
+  - Configuration options are now declared properly, so CKAN no longer
+    warns about unknown settings.
 
 ### Tested
 
