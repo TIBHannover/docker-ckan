@@ -50,7 +50,7 @@ RUN if [ -d /tmp/customization/i18n ]; then \
 # Install CKAN extensions using ckanext-install.sh
 RUN ckanext-install.sh TIBHannover/ckanext-cancel-dataset-creation 1.0.4 && \
     ckanext-install.sh TIBHannover/ckanext-close-for-guests 1.1.8 && \
-    ckanext-install.sh TIBHannover/ckanext-crc1153 1.0.3 && \
+    ckanext-install.sh TIBHannover/ckanext-crc1153 1.0.5 && \
     ckanext-install.sh ckan/ckanext-dcat v2.4.4 && \
     ckanext-install.sh TIBHannover/ckanext-dataset-metadata-automation 1.0.1 && \
     ckanext-install.sh TIBHannover/ckanext-Dataset-Reference 3.0.3 && \
@@ -63,10 +63,11 @@ RUN ckanext-install.sh TIBHannover/ckanext-cancel-dataset-creation 1.0.4 && \
     ckanext-install.sh TIBHannover/ckanext-user-manual 1.0.2 && \
     ckanext-install.sh TIBHannover/ckanext-scheming trr375-1.0.0 && \
     ckanext-install.sh TIBHannover/ckanext-dataset-transfer 1.0.1 && \
-    ckanext-install.sh TIBHannover/ckanext-Semantic-Media-Wiki 3.0.2 && \
+    ckanext-install.sh TIBHannover/ckanext-Semantic-Media-Wiki 3.1.0 && \
     ckanext-install.sh TIBHannover/ckanext-sfb-search 1.0.1 && \
     ckanext-install.sh TIBHannover/ckanext-data-comparison 1.0.2 && \
-    ckanext-install.sh TIBHannover/ckanext-resource-custom-metadata 1.0.2
+    ckanext-install.sh TIBHannover/ckanext-resource-custom-metadata 1.0.2 && \
+    ckanext-install.sh TIBHannover/ckanext_sfb_layout 1.0.5
 
 # Apply temporary compatibility patches to the pinned extension sources.
 # Remove these patches after the corresponding fixes have tagged releases.
