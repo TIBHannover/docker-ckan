@@ -19,8 +19,8 @@ git tags for the earlier history.
 
 - Bumped `ckanext-crc1153` from 1.0.3 to 1.0.5 to include the latest
   SFB1153 CSS and page layout fixes.
-- Bumped `ckanext-Semantic-Media-Wiki` from 3.0.2 to 3.0.5 for the shared
-  Semantic MediaWiki integration used by the project deployments. And removed empty machine bundle
+- Bumped `ckanext-Semantic-Media-Wiki` from 3.0.2 to 3.1.0 for the shared
+  Semantic MediaWiki integration used by the project deployments. And removed empty machine bundle. Migration for machine-link database has been issued in this release 
 
 ### Tested
 
