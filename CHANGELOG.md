@@ -10,10 +10,23 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+### Added
+
+- Added `ckanext_sfb_layout` 1.0.4 to the installed extensions. This is a
+  key extension for the SFB1368-specific site layout.
+
 ### Changed
 
 - Bumped `ckanext-crc1153` from 1.0.3 to 1.0.5 to include the latest
   SFB1153 CSS and page layout fixes.
+- Bumped `ckanext-Semantic-Media-Wiki` from 3.0.2 to 3.0.4 for the shared
+  Semantic MediaWiki integration used by the project deployments.
+
+### Tested
+
+- Successfully tested the updated CKAN image and plugin configuration with
+  the SFB1368 deployment. The integration, including the SFB1368 layout,
+  worked as expected.
 
 ## [3.2.0]
 
