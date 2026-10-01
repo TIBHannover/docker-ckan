@@ -31,7 +31,7 @@ git tags for the earlier history.
 - Enabled `dcat_crc`, `sparql_interface`, `downloadall` and `sfb_layout` in
   `.env.example`; deployments with their own `CKAN__PLUGINS` value must add
   the required plugin names explicitly.
-- Extended CI coverage to load `dataset_transfer`, `data_comparison` and
+- Extended CI coverage to load `dataset_transfer`, `data_comparision` and
   `resource_custom_metadata` along with the other supported project plugins.
   The currently broken `close_for_guests` plugin remains excluded.
 - Deployments using the DCAT-AP CRC profile must add `crc_dcat_ap` to
