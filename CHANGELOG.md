@@ -12,25 +12,42 @@ git tags for the earlier history.
 
 ### Added
 
-- Added `ckanext_sfb_layout` 1.0.5 to the installed extensions. This is a
-  key extension for the SFB1368-specific site layout. Version 1.0.5 fixes
-  the webassets that failed to resolve in 1.0.4.
-- Added `ckanext-dcatapcrc` 1.0.0, the DCAT-AP CRC profile for SFB1368.
-  It extends the existing `ckanext-dcat` integration.
-- Added `ckanext-sparql_interface` 3.0.6 and `ckanext-downloadall` 2.0.3
-  to improve interoperability and make datasets easier to access.
+- `ckanext-dcatapcrc` 1.0.0
+  - Added the DCAT-AP CRC profile for SFB1368. It extends the existing
+    `ckanext-dcat` integration.
+- `ckanext-sparql_interface` 3.0.6
+  - Added a SPARQL interface to improve interoperability.
+- `ckanext-downloadall` 2.0.3
+  - Added bulk download of datasets to make them easier to access.
 
 ### Changed
 
-- Bumped `ckanext-crc1153` from 1.0.5 to 1.0.6 to include the latest
-  SFB1153 CSS and page layout fixes.
-- Bumped `ckanext-Semantic-Media-Wiki` from 3.0.2 to 3.1.0 for the shared
-  Semantic MediaWiki integration used by the project deployments. This
-  release removes the empty machine bundle and adds the missing database
-  migration for the `machine_link` plugin.
-- Bumped `ckanext_sfb_layout` from 1.0.5 to 1.0.7 and
-  `ckanext-user-manual` from 1.0.2 to 1.0.3 so the SPARQL interface is
-  available from the header navigation.
+- `ckanext-crc1153`: 1.0.5 → 1.0.6
+  - Includes the latest SFB1153 CSS and page layout fixes.
+- `ckanext_sfb_layout`: 1.0.5 → 1.0.7
+  - Makes the SPARQL interface available from the header navigation.
+- `ckanext-user-manual`: 1.0.2 → 1.0.3
+  - Matches the updated header navigation.
+
+## [3.3.0]
+
+### Added
+
+- `ckanext_sfb_layout` 1.0.5
+  - Added the SFB1368-specific site layout. Version 1.0.5 fixes the page
+    assets that failed to load in 1.0.4.
+
+### Changed
+
+- `ckanext-crc1153`: 1.0.3 → 1.0.5
+  - Includes the latest SFB1153 CSS and page layout fixes.
+- `ckanext-Semantic-Media-Wiki`: 3.0.2 → 3.1.0
+  - Fixed the Equipment, Sample and Protocol dialogs: they now open and
+    submit correctly on CKAN 2.11.
+  - Fixed database setup for the machine link feature, so it now installs
+    and upgrades cleanly, including on existing installations.
+  - Configuration options are now declared properly, so CKAN no longer
+    warns about unknown settings.
 
 ### Tested
 

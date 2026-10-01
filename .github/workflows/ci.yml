@@ -23,7 +23,7 @@ jobs:
       # installed but never loaded or checked by "make ci".
       - name: Enable all project plugins
         run: |
-          echo 'CKAN__PLUGINS="cancel_dataset_creation dataset_metadata_automation dataset_reference datatables_view datastore datapusher dcat email_notification envvars feature_image harvest image_view multiuploader organization_group scheming_organizations text_view tif_imageview user_manual machine_link protocol_link sample_link sfb_search crc1153_dcat_profile crc1153_layout crc1153_search crc1153_specific_metadata crc1153_system_stats sfb_layout"' >> .env
+          echo 'CKAN__PLUGINS="cancel_dataset_creation dataset_metadata_automation dataset_reference datatables_view datastore datapusher dcat email_notification envvars feature_image harvest image_view multiuploader organization_group scheming_organizations text_view tif_imageview user_manual machine_link protocol_link sample_link sfb_search crc1153_dcat_profile crc1153_layout crc1153_search crc1153_specific_metadata crc1153_system_stats sfb_layout dcat_crc sparql_interface downloadall"' >> .env
 
       - name: Build images and run smoke test
         run: make ci
