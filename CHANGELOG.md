@@ -28,6 +28,15 @@ git tags for the earlier history.
   - Makes the SPARQL interface available from the header navigation.
 - `ckanext-user-manual`: 1.0.2 → 1.0.3
   - Matches the updated header navigation.
+- Enabled `dcat_crc`, `sparql_interface`, `downloadall` and `sfb_layout` in
+  `.env.example`; deployments with their own `CKAN__PLUGINS` value must add
+  the required plugin names explicitly.
+- Extended CI coverage to load `dataset_transfer`, `data_comparison` and
+  `resource_custom_metadata` along with the other supported project plugins.
+  The currently broken `close_for_guests` plugin remains excluded.
+- Deployments using the DCAT-AP CRC profile must add `crc_dcat_ap` to
+  `ckanext.dcat.rdf.profiles` in their deployment-specific CKAN configuration;
+  loading `dcat_crc` registers the profile but does not select it.
 
 ## [3.3.0]
 
