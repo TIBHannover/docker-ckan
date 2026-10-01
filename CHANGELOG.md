@@ -24,8 +24,9 @@ git tags for the earlier history.
 
 - `ckanext-crc1153`: 1.0.5 → 1.0.6
   - Includes the latest SFB1153 CSS and page layout fixes.
-- `ckanext_sfb_layout`: 1.0.5 → 1.0.7
+- `ckanext_sfb_layout`: 1.0.5 → 1.1.0
   - Makes the SPARQL interface available from the header navigation.
+  - This new version includes the system_stats plugin which was previously individual plugin. 
 - `ckanext-user-manual`: 1.0.2 → 1.0.3
   - Matches the updated header navigation.
 - Enabled `dcat_crc`, `sparql_interface`, `downloadall` and `sfb_layout` in
@@ -39,6 +40,7 @@ git tags for the earlier history.
   loading `dcat_crc` registers the profile but does not select it.
 - `ckanext-Semantic-Media-Wiki`: 3.1.0 -> 3.1.1 
   - fixes and changes required for SMW use cases
+- `ckanext-data-comparision`(1.1.0), `ckanext-dataset-transfer` (1.0.2) and `ckanext-resource-custom-metadata` (1.0.3) , version have been bumped to fix and replace vendor assets   
 
 ## [3.3.0]
 
