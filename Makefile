@@ -57,6 +57,9 @@ bash:
 
 # ======== Lint ========
 
+# hadolint 2.15 newly flags our Dockerfiles (SC3044 for shopt despite SHELL bash,
+# DL3066), so stay on the last release that lints them clean.
+hadolint_image = hadolint/hadolint:v2.14.0
 dockerfiles = ckan/Dockerfile nginx/Dockerfile postgresql/Dockerfile solr/Dockerfile
 shellfiles = $(shell git ls-files '*.sh')
 
@@ -68,7 +71,7 @@ lint-hadolint:
 	$(show-current-target)
 	@for f in $(dockerfiles); do \
 		echo "--- hadolint $$f ---"; \
-		docker run --rm -i hadolint/hadolint < $$f || exit $$?; \
+		docker run --rm -i $(hadolint_image) < $$f || exit $$?; \
 	done
 
 .PHONY: lint-shellcheck
