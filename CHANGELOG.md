@@ -10,45 +10,50 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+## [3.4.0]
+
 ### Added
 
 - `ckanext-dcatapcrc` 1.0.0
-  - Added the DCAT-AP CRC profile for SFB1368. It extends the existing
-    `ckanext-dcat` integration.
+  - New DCAT-AP profile for SFB1368 catalogue metadata, for CKAN 2.10 and
+    2.11. It is registered as `crc_dcat_ap`, but has to be selected in
+    `ckanext.dcat.rdf.profiles`.
 - `ckanext-sparql_interface` 3.0.6
-  - Added a SPARQL interface to improve interoperability.
+  - SPARQL interface for querying the catalogue data, linked from the
+    header navigation.
 - `ckanext-downloadall` 2.0.3
-  - Added bulk download of datasets to make them easier to access.
+  - Datasets can be downloaded in one go; compatible with CKAN 2.10 and
+    2.11.
 
 ### Changed
 
 - `ckanext-crc1153`: 1.0.5 → 1.0.6
-  - Includes the latest SFB1153 CSS and page layout fixes.
+  - The masthead and account header now use the full page width again on
+    CKAN 2.11.
 - `ckanext_sfb_layout`: 1.0.5 → 1.1.0
-  - Makes the SPARQL interface available from the header navigation.
-  - Includes the `system_stats` plugin, which was previously a separate
-    plugin. `crc1153_system_stats` is still needed alongside it.
+  - Header navigation entry for the SPARQL interface.
+  - System statistics are now part of the layout extension (plugin
+    `system_stats`); `crc1153_system_stats` is still needed alongside it.
 - `ckanext-user-manual`: 1.0.2 → 1.0.3
-  - Matches the updated header navigation.
+  - Header navigation entry for the SPARQL interface.
 - `ckanext-Semantic-Media-Wiki`: 3.1.0 → 3.1.1
-  - Includes fixes and changes required for the SMW use cases.
+  - The MediaWiki API address (host, path, scheme) is now configurable,
+    with the correct defaults for SFB1153 and SFB1368.
 - `ckanext-data-comparison`: 1.0.2 → 1.1.0
-  - Replaces the vendor assets that no longer exist in CKAN 2.11. The plugin
-    is registered as `data_comparision` (sic).
 - `ckanext-dataset-transfer`: 1.0.1 → 1.0.2
-  - Replaces the vendor assets that no longer exist in CKAN 2.11.
 - `ckanext-resource-custom-metadata`: 1.0.2 → 1.0.3
-  - Replaces the vendor assets that no longer exist in CKAN 2.11.
-- `.env.example`: enabled `dcat_crc`, `sparql_interface`, `downloadall`,
-  `sfb_layout` and `system_stats` by default. Deployments with their own
-  `CKAN__PLUGINS` value must add the required plugin names explicitly.
-- Deployments using the DCAT-AP CRC profile must add `crc_dcat_ap` to
-  `ckanext.dcat.rdf.profiles` in their deployment-specific CKAN configuration.
-  Loading `dcat_crc` registers the profile but does not select it.
-- CI now loads `dataset_transfer`, `data_comparision`,
-  `resource_custom_metadata`, `system_stats`, `dcat_crc`, `sparql_interface`
-  and `downloadall` along with the other supported project plugins. The
-  currently broken `close_for_guests` plugin remains excluded.
+  - These three extensions work on CKAN 2.11 again: their pages no longer
+    fail to load scripts that were removed from CKAN.
+
+### Upgrade notes
+
+- `.env.example` now enables `dcat_crc`, `sparql_interface`, `downloadall`,
+  `sfb_layout` and `system_stats`, plus `dataset_transfer`,
+  `data_comparision` and `resource_custom_metadata`. Deployments with their
+  own `CKAN__PLUGINS` value must add the plugins they want explicitly.
+- Deployments that use the DCAT-AP CRC profile must add `crc_dcat_ap` to
+  `ckanext.dcat.rdf.profiles`.
+- The data-comparison plugin is registered as `data_comparision` (sic).
 
 ## [3.3.0]
 
