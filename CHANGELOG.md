@@ -15,15 +15,18 @@ git tags for the earlier history.
 - Added `ckanext_sfb_layout` 1.0.5 to the installed extensions. This is a
   key extension for the SFB1368-specific site layout. Version 1.0.5 fixes
   the webassets that failed to resolve in 1.0.4.
+- Added `ckanext-dcatapcrc` 1.0.0, which is a dcat-crc profile for SFB1368. These extension needs ckanext-dcat before adding. This was missed in the previous releases
+- Added `ckanext-sparql_interface` (3.0.6) and `ckanext-downloadall` (2.0.3) features, which are an add-on or recent integration for more user-friendly and interoperability applications 
 
 ### Changed
 
-- Bumped `ckanext-crc1153` from 1.0.3 to 1.0.5 to include the latest
+- Bumped `ckanext-crc1153` from 1.0.5 to 1.0.6 to include the latest
   SFB1153 CSS and page layout fixes.
 - Bumped `ckanext-Semantic-Media-Wiki` from 3.0.2 to 3.1.0 for the shared
   Semantic MediaWiki integration used by the project deployments. This
   release removes the empty machine bundle and adds the missing database
   migration for the `machine_link` plugin.
+- Bumped `ckanext-sfb_layout` from 1.0.5 to 1.0. and `ckanext-user-maunaul` from 1.0.2 to 1.0.3 to make sure that SPAQRL interface tab is available on header navigation 
 
 ### Tested
 
