@@ -37,6 +37,8 @@ git tags for the earlier history.
 - Deployments using the DCAT-AP CRC profile must add `crc_dcat_ap` to
   `ckanext.dcat.rdf.profiles` in their deployment-specific CKAN configuration;
   loading `dcat_crc` registers the profile but does not select it.
+- `ckanext-Semantic-Media-Wiki`: 3.1.0 -> 3.1.1 
+  - fixes and changes required for SMW use cases
 
 ## [3.3.0]
 
