@@ -24,7 +24,7 @@ jobs:
       # ckanext-data-comparison.
       - name: Enable all supported project plugins
         run: |
-          echo 'CKAN__PLUGINS="cancel_dataset_creation dataset_metadata_automation dataset_reference dataset_transfer datatables_view datastore datapusher dcat email_notification envvars feature_image harvest image_view multiuploader organization_group resource_custom_metadata scheming_organizations data_comparision text_view tif_imageview user_manual machine_link protocol_link sample_link sfb_search crc1153_dcat_profile crc1153_layout crc1153_search crc1153_specific_metadata crc1153_system_stats sfb_layout dcat_crc sparql_interface downloadall"' >> .env
+          echo 'CKAN__PLUGINS="cancel_dataset_creation dataset_metadata_automation dataset_reference dataset_transfer datatables_view datastore datapusher dcat email_notification envvars feature_image harvest image_view multiuploader organization_group resource_custom_metadata scheming_organizations data_comparision text_view tif_imageview user_manual machine_link protocol_link sample_link sfb_search crc1153_dcat_profile crc1153_layout crc1153_search crc1153_specific_metadata crc1153_system_stats sfb_layout system_stats dcat_crc sparql_interface downloadall"' >> .env
 
       - name: Build images and run smoke test
         run: make ci
