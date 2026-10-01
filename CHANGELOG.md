@@ -26,21 +26,29 @@ git tags for the earlier history.
   - Includes the latest SFB1153 CSS and page layout fixes.
 - `ckanext_sfb_layout`: 1.0.5 → 1.1.0
   - Makes the SPARQL interface available from the header navigation.
-  - This new version includes the system_stats plugin which was previously individual plugin. 
+  - Includes the `system_stats` plugin, which was previously a separate
+    plugin. `crc1153_system_stats` is still needed alongside it.
 - `ckanext-user-manual`: 1.0.2 → 1.0.3
   - Matches the updated header navigation.
-- Enabled `dcat_crc`, `sparql_interface`, `downloadall` and `sfb_layout` in
-  `.env.example`; deployments with their own `CKAN__PLUGINS` value must add
-  the required plugin names explicitly.
-- Extended CI coverage to load `dataset_transfer`, `data_comparision` and
-  `resource_custom_metadata` along with the other supported project plugins.
-  The currently broken `close_for_guests` plugin remains excluded.
+- `ckanext-Semantic-Media-Wiki`: 3.1.0 → 3.1.1
+  - Includes fixes and changes required for the SMW use cases.
+- `ckanext-data-comparison`: 1.0.2 → 1.1.0
+  - Replaces the vendor assets that no longer exist in CKAN 2.11. The plugin
+    is registered as `data_comparision` (sic).
+- `ckanext-dataset-transfer`: 1.0.1 → 1.0.2
+  - Replaces the vendor assets that no longer exist in CKAN 2.11.
+- `ckanext-resource-custom-metadata`: 1.0.2 → 1.0.3
+  - Replaces the vendor assets that no longer exist in CKAN 2.11.
+- `.env.example`: enabled `dcat_crc`, `sparql_interface`, `downloadall`,
+  `sfb_layout` and `system_stats` by default. Deployments with their own
+  `CKAN__PLUGINS` value must add the required plugin names explicitly.
 - Deployments using the DCAT-AP CRC profile must add `crc_dcat_ap` to
-  `ckanext.dcat.rdf.profiles` in their deployment-specific CKAN configuration;
-  loading `dcat_crc` registers the profile but does not select it.
-- `ckanext-Semantic-Media-Wiki`: 3.1.0 -> 3.1.1 
-  - fixes and changes required for SMW use cases
-- `ckanext-data-comparision`(1.1.0), `ckanext-dataset-transfer` (1.0.2) and `ckanext-resource-custom-metadata` (1.0.3) , version have been bumped to fix and replace vendor assets   
+  `ckanext.dcat.rdf.profiles` in their deployment-specific CKAN configuration.
+  Loading `dcat_crc` registers the profile but does not select it.
+- CI now loads `dataset_transfer`, `data_comparision`,
+  `resource_custom_metadata`, `system_stats`, `dcat_crc`, `sparql_interface`
+  and `downloadall` along with the other supported project plugins. The
+  currently broken `close_for_guests` plugin remains excluded.
 
 ## [3.3.0]
 
