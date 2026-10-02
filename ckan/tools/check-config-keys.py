@@ -34,10 +34,11 @@ PATTERNS = [
         re.compile(r"""config(?:\.get|\.get_value)?[\(\[]\s*["'](""" + KEY + r""")["']"""),
         {".py", ".html"},
     ),
-    # config_declaration.yaml: "key: ..." and "legacy_key: ..."
+    # config_declaration.yaml: "key: ...". legacy_key entries are the old names kept
+    # for backward compatibility on purpose, so they are not matched.
     (
         "declaration",
-        re.compile(r"""^\s*-?\s*(?:legacy_)?key:\s*["']?(""" + KEY + r""")["']?\s*$""", re.M),
+        re.compile(r"""^\s*-?\s*key:\s*["']?(""" + KEY + r""")["']?\s*$""", re.M),
         {".yaml", ".yml"},
     ),
 ]
