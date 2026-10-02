@@ -1,0 +1,2 @@
+# Config keys with upper-case characters that are allowed on purpose, one per
+# line. Everything else found by check-config-keys.py fails the CI.

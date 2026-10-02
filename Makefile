@@ -114,6 +114,7 @@ ci:
 	$(MAKE) wait-for-healthy || { $(compose) down; exit 1; }
 	$(MAKE) ci-plugins || { $(compose) down; exit 1; }
 	$(MAKE) ci-webassets || { $(compose) down; exit 1; }
+	$(MAKE) ci-config-keys || { $(compose) down; exit 1; }
 	$(MAKE) ci-integration || { $(compose) down; exit 1; }
 	$(compose) down
 
@@ -138,6 +139,7 @@ ci-upgrade:
 	$(compose) logs ckan | grep -iE "02_reindex_on_schema_change|search-index rebuild" || true
 	$(MAKE) ci-plugins || { $(compose) down; exit 1; }
 	$(MAKE) ci-webassets || { $(compose) down; exit 1; }
+	$(MAKE) ci-config-keys || { $(compose) down; exit 1; }
 	$(MAKE) ci-integration || { $(compose) down; exit 1; }
 	@echo "--- restarting to verify idempotence (no rebuild) ---"
 	$(compose) down
@@ -174,6 +176,14 @@ ci-webassets:
 	$(show-current-target)
 	@echo "Checking that all registered webassets bundles resolve..."
 	$(compose-exec) ckan python3 /tools/check-webassets.py
+
+# Extension settings reach CKAN as CKANEXT__* variables, which are lowercased;
+# keys with upper-case characters can never be set that way.
+.PHONY: ci-config-keys
+ci-config-keys:
+	$(show-current-target)
+	@echo "Checking that installed extensions only use lowercase config keys..."
+	$(compose-exec) ckan python3 /tools/check-config-keys.py
 
 # Integration test for infrastructure shared across extensions (resource
 # upload, DataPusher, DataStore) that no single extension's own test suite
