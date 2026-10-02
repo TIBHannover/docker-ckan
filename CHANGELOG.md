@@ -12,11 +12,12 @@ git tags for the earlier history.
 
 ### Changed
 
-- `ckanext-crc1153`: 1.0.10 → 1.0.11
+- `ckanext-crc1153`: 1.0.10 → 1.0.12
   - Fixed the resource modal and the extra-metadata workflow on CKAN 2.11.
-- `ckanext-dcatapcrc`: 1.0.3 → 1.0.4
+- `ckanext-dcatapcrc`: 1.0.3 → 1.0.5
   - Fixed resource handling during dataset creation.
   - Fixed the resource modal and the extra-metadata workflow on CKAN 2.11.
+  - Declared mixed-case legacy config keys instead of reading them directly.
 - `ckanext-organization-group`: 1.0.3 → 1.0.4
   - Fixed a CSRF token error.
 - `ckanext-resource-custom-metadata`: 1.0.3 → 1.0.5
