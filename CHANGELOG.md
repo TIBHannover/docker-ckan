@@ -17,6 +17,23 @@ git tags for the earlier history.
   `CKANEXT__*` variables. Known exceptions go into
   `ckan/tools/config-key-exceptions.txt`.
 
+### Changed
+
+- `ckanext-Semantic-Media-Wiki`: 3.1.1 → 3.2.1
+  - Config keys are now lowercase (for example `ckanext.smw.baseurl`,
+    `ckanext.smw.mediawiki.api.endpoint`, `ckanext.mediawiki_credentials_path`),
+    so they can be set via `CKANEXT__*` variables. The old names keep working
+    with a deprecation warning.
+- `ckanext-crc1153`: 1.0.6 → 1.0.10
+  - The Apache Jena endpoint key is now lowercase
+    (`ckanext.apachejena.endpoint`); the old name keeps working.
+  - The MediaWiki credentials path is now read from the lowercase key
+    `ckanext.mediawiki_credentials_path`, shared with
+    `ckanext-Semantic-Media-Wiki`.
+- `ckanext-dcatapcrc`: 1.0.0 → 1.0.3
+  - The Apache Jena endpoint key is now lowercase
+    (`ckanext.apachejena.endpoint`); the old name keeps working.
+
 ## [3.4.0]
 
 ### Added
