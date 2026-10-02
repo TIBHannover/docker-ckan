@@ -16,9 +16,27 @@ git tags for the earlier history.
   declares a config key with upper-case characters, which cannot be set via
   `CKANEXT__*` variables. Known exceptions go into
   `ckan/tools/config-key-exceptions.txt`.
+- CI check `ci-extension-config` that verifies every non-empty `CKANEXT__*`
+  variable arrives in CKAN as a declared config key with the given value, so
+  typos in variable names fail the build.
+- Startup warning for `CKANEXT__*` variables that do not match a config key
+  declared by an installed extension (usually a typo in the variable name,
+  the variable then has no effect). It only warns and never blocks the start.
+- `CKANEXT__SMW__MEDIAWIKI__API__PATH` and `CKANEXT__SMW__MEDIAWIKI__API__SCHEME`
+  can now be set; before, they could not be set at all.
 
 ### Changed
 
+- **Breaking:** the extension settings are now plain `CKANEXT__*` variables
+  handled by `ckanext-envvars`; `04_configure_sfb1153.sh` no longer writes
+  config keys. Rename the variables in your `.env`:
+  - `CKAN_SMW_BASE_URL` → `CKANEXT__SMW__BASEURL`
+  - `CKAN_SMW_API_ENDPOINT` → `CKANEXT__SMW__MEDIAWIKI__API__ENDPOINT`
+  - `CKAN_SMW_CREDENTIALS_PATH` → `CKANEXT__MEDIAWIKI_CREDENTIALS_PATH`
+  - `CKAN_APACHE_JENA_ENDPOINT` → `CKANEXT__APACHEJENA__ENDPOINT`
+
+  `CKAN_SMW_USERNAME` and `CKAN_SMW_PASSWORD` are unchanged. The Jena endpoint
+  is now applied whenever it is set, not only with `crc1153_dcat_profile`.
 - `ckanext-Semantic-Media-Wiki`: 3.1.1 → 3.2.1
   - Config keys are now lowercase (for example `ckanext.smw.baseurl`,
     `ckanext.smw.mediawiki.api.endpoint`, `ckanext.mediawiki_credentials_path`),

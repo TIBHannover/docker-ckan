@@ -115,6 +115,7 @@ ci:
 	$(MAKE) ci-plugins || { $(compose) down; exit 1; }
 	$(MAKE) ci-webassets || { $(compose) down; exit 1; }
 	$(MAKE) ci-config-keys || { $(compose) down; exit 1; }
+	$(MAKE) ci-extension-config || { $(compose) down; exit 1; }
 	$(MAKE) ci-integration || { $(compose) down; exit 1; }
 	$(compose) down
 
@@ -140,6 +141,7 @@ ci-upgrade:
 	$(MAKE) ci-plugins || { $(compose) down; exit 1; }
 	$(MAKE) ci-webassets || { $(compose) down; exit 1; }
 	$(MAKE) ci-config-keys || { $(compose) down; exit 1; }
+	$(MAKE) ci-extension-config || { $(compose) down; exit 1; }
 	$(MAKE) ci-integration || { $(compose) down; exit 1; }
 	@echo "--- restarting to verify idempotence (no rebuild) ---"
 	$(compose) down
@@ -184,6 +186,14 @@ ci-config-keys:
 	$(show-current-target)
 	@echo "Checking that installed extensions only use lowercase config keys..."
 	$(compose-exec) ckan python3 /tools/check-config-keys.py
+
+# The CKANEXT__* variables of the container must arrive as declared config keys
+# with the given value (dynamic counterpart of ci-config-keys).
+.PHONY: ci-extension-config
+ci-extension-config:
+	$(show-current-target)
+	@echo "Checking that CKANEXT__* variables reach CKAN as config keys..."
+	$(compose-exec) ckan python3 /tools/check-extension-config.py
 
 # Integration test for infrastructure shared across extensions (resource
 # upload, DataPusher, DataStore) that no single extension's own test suite

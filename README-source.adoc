@@ -75,6 +75,10 @@ The configuration of services is driven entirely by environment variables define
 
 `.env.example` is the authoritative, self-documenting reference for every available environment variable: it is organized into commented sections (Host & Network, Database, CKAN Core, Secrets, Sysadmin, E-Mail, Storage, Solr, Redis, DataPusher, Harvest, Extensions, Backup), with a comment above each variable (or group of variables) explaining its purpose and, where relevant, the default used when it is left unset. Consult it directly rather than a separate list here, so this README cannot drift out of sync with the actual variables. `.env` itself is git-tracked and only contains dummy/development values, so it is safe to inspect and copy as a starting point (`cp .env.example .env`).
 
+Settings of CKAN extensions are plain `CKANEXT__<extension>__<key>` variables, for example `CKANEXT__SMW__BASEURL`. `ckanext-envvars` (plugin `envvars`) lowercases the name and turns `__` into `.`, which gives the config key `ckanext.smw.baseurl`. There is no mapping table to maintain: a new variable works as soon as the extension reads that key. This only works for lowercase config keys, so extensions must not use upper-case characters in their keys. Extensions should declare their keys in a `config_declaration.yaml` (the recommended CKAN way). A variable that does not match a declared key is usually a typo and has no effect; the `ckan` container logs a `WARNING` for it at startup.
+
+`make ci` checks this: `ci-config-keys` fails if an installed extension reads or declares a key with upper-case characters (intentional exceptions are listed in `ckan/tools/config-key-exceptions.txt`), and `ci-extension-config` verifies that every `CKANEXT__*` variable set in the CI environment arrives in CKAN as a declared config key with the given value.
+
 Most of these variables are read at container startup by the scripts in `ckan/docker-entrypoint.d/` (e.g. `00_configure_core.sh` applies them to `ckan.ini` via `ckan config-tool`), so changing `.env` and running `make build up` again is normally enough — no image rebuild is required unless you changed a Dockerfile or a file that gets baked into the image (see <<plugins-baked-in>>).
 
 [#plugins-baked-in]
@@ -96,7 +100,7 @@ RUN ckanext-install.sh TIBHannover/ckanext-cancel-dataset-creation 1.0.0 && \
 1. Installs the extension straight from GitHub at the given tag: `pip install -e "git+https://github.com/<repo>.git@<tag>#egg=<repo-name>"`.
 2. Installs that tag's `requirements.txt` from the same ref.
 
-To add a new extension, add another `ckanext-install.sh` line (alphabetically) with the GitHub org/repo and the exact release tag you want pinned. To upgrade one, bump its tag and rebuild (`make build`).
+To add a new extension, add another `ckanext-install.sh` line (alphabetically) with the GitHub org/repo and the exact release tag you want pinned. To upgrade one, bump its tag and rebuild (`make build`). If the extension has settings, document the `CKANEXT__*` variables in `.env.example`, so `make ci` verifies them; a new version that reads a key with upper-case characters fails `ci-config-keys`.
 
 === Activating an installed extension
 Being installed in the image does not mean it is active — CKAN only loads plugins listed in `CKAN__PLUGINS` in `.env`:
