@@ -12,22 +12,18 @@ git tags for the earlier history.
 
 ### Changed
 
-- `ckanext-crc1153`: 1.0.6 → 1.0.11
-  - Fixed the CSRF token error and lowercase handling of the Apache Jena
-    configuration variable.
-  - Fixed the resource modal and extra metadata workflow for CKAN 2.11.
-- `ckanext-organization-group`: 1.0.3 → 1.0.4
-  - Fixed the CSRF token error for SFB1153.
-- `ckanext-Semantic-Media-Wiki`: 3.1.1 → 3.2.1
-  - Fixed the SMW endpoint configuration variable and compatibility with the
-    legacy misspelled setting.
-- `ckanext-resource-custom-metadata`: 1.0.3 → 1.0.5
-  - Fixed the CSRF token error for SFB1368.
-- `ckanext-downloadall`: 2.0.3 → 2.0.4
-  - Fixed a legacy issue that prevented datasets from opening.
-- `ckanext-dcatapcrc`: 1.0.0 → 1.0.4
+- `ckanext-crc1153`: 1.0.10 → 1.0.11
+  - Fixed the resource modal and the extra-metadata workflow on CKAN 2.11.
+- `ckanext-dcatapcrc`: 1.0.3 → 1.0.4
   - Fixed resource handling during dataset creation.
-  - Fixed the resource modal and extra metadata workflow for CKAN 2.11.
+  - Fixed the resource modal and the extra-metadata workflow on CKAN 2.11.
+- `ckanext-organization-group`: 1.0.3 → 1.0.4
+  - Fixed a CSRF token error.
+- `ckanext-resource-custom-metadata`: 1.0.3 → 1.0.5
+  - Fixed a CSRF token error.
+- `ckanext-downloadall`: 2.0.3 → 2.0.4
+  - Fixed an error that prevented datasets from opening.
+
 ## [3.5.0]
 
 ### Added
