@@ -28,6 +28,12 @@ git tags for the earlier history.
 - `ckanext-dcatapcrc`: 1.0.0 → 1.0.3
   - Fixed resource handling during dataset creation.
   - Fixed the resource modal and extra metadata workflow for CKAN 2.11.
+### Added
+
+- CI check `ci-config-keys` that fails if an installed extension reads or
+  declares a config key with upper-case characters, which cannot be set via
+  `CKANEXT__*` variables. Known exceptions go into
+  `ckan/tools/config-key-exceptions.txt`.
 
 ## [3.4.0]
 
