@@ -12,7 +12,7 @@ git tags for the earlier history.
 
 ### Changed
 
-- `ckanext-crc1153`: 1.0.6 → 1.0.10
+- `ckanext-crc1153`: 1.0.6 → 1.0.11
   - Fixed the CSRF token error and lowercase handling of the Apache Jena
     configuration variable.
   - Fixed the resource modal and extra metadata workflow for CKAN 2.11.
@@ -25,7 +25,7 @@ git tags for the earlier history.
   - Fixed the CSRF token error for SFB1368.
 - `ckanext-downloadall`: 2.0.3 → 2.0.4
   - Fixed a legacy issue that prevented datasets from opening.
-- `ckanext-dcatapcrc`: 1.0.0 → 1.0.3
+- `ckanext-dcatapcrc`: 1.0.0 → 1.0.4
   - Fixed resource handling during dataset creation.
   - Fixed the resource modal and extra metadata workflow for CKAN 2.11.
 ### Added
