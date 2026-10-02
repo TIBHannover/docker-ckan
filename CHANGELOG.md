@@ -12,12 +12,15 @@ git tags for the earlier history.
 
 ### Changed
 
-- `ckanext-crc1153`: 1.0.10 → 1.0.12
+- `ckanext-crc1153`: 1.0.10 → 1.0.13
   - Fixed the resource modal and the extra-metadata workflow on CKAN 2.11.
-- `ckanext-dcatapcrc`: 1.0.3 → 1.0.5
+- `ckanext-dcatapcrc`: 1.0.3 → 1.0.6
   - Fixed resource handling during dataset creation.
   - Fixed the resource modal and the extra-metadata workflow on CKAN 2.11.
   - Declared mixed-case legacy config keys instead of reading them directly.
+  - Switched Jena settings to plugin-id config keys.
+- `ckanext-Semantic-Media-Wiki`: 3.2.1 → 3.2.2
+  - Switched MediaWiki credentials to the `ckanext.smw` config namespace.
 - `ckanext-organization-group`: 1.0.3 → 1.0.4
   - Fixed a CSRF token error.
 - `ckanext-resource-custom-metadata`: 1.0.3 → 1.0.5
@@ -49,8 +52,8 @@ git tags for the earlier history.
   config keys. Rename the variables in your `.env`:
   - `CKAN_SMW_BASE_URL` → `CKANEXT__SMW__BASEURL`
   - `CKAN_SMW_API_ENDPOINT` → `CKANEXT__SMW__MEDIAWIKI__API__ENDPOINT`
-  - `CKAN_SMW_CREDENTIALS_PATH` → `CKANEXT__MEDIAWIKI_CREDENTIALS_PATH`
-  - `CKAN_APACHE_JENA_ENDPOINT` → `CKANEXT__APACHEJENA__ENDPOINT`
+  - `CKAN_SMW_CREDENTIALS_PATH` → `CKANEXT__SMW__MEDIAWIKI_CREDENTIALS_PATH`
+  - `CKAN_APACHE_JENA_ENDPOINT` → `CKANEXT__CRC1153__APACHEJENA__ENDPOINT`
 
   `CKAN_SMW_USERNAME` and `CKAN_SMW_PASSWORD` are unchanged. The Jena endpoint
   is now applied whenever it is set, not only with `crc1153_dcat_profile`.
