@@ -23,8 +23,12 @@ if has_plugin machine_link || has_plugin sample_link || has_plugin protocol_link
     fi
 
     umask 077
-    printf 'username=%s\npassword=%s\n' \
-      "${CKAN_SMW_USERNAME}" "${CKAN_SMW_PASSWORD}" > "${CKANEXT__SMW__MEDIAWIKI_CREDENTIALS_PATH}"
+    for credentials_path in "${CKANEXT__SMW__MEDIAWIKI_CREDENTIALS_PATH}" \
+      "${CKANEXT__CRC1153__MEDIAWIKI_CREDENTIALS_PATH:-}"; do
+      [[ -n "${credentials_path}" ]] || continue
+      printf 'username=%s\npassword=%s\n' \
+        "${CKAN_SMW_USERNAME}" "${CKAN_SMW_PASSWORD}" > "${credentials_path}"
+    done
   else
     echo "SFB1153: SMW credentials not configured; authenticated SMW actions are disabled"
   fi

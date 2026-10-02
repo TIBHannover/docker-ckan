@@ -12,6 +12,17 @@ git tags for the earlier history.
 
 ### Changed
 
+- **Breaking:** the credentials path and Jena endpoint settings introduced in
+  3.5.0 now carry the name of the extension that reads them, because CKAN
+  accepts each config key from one extension only. Rename the variables in
+  your `.env`:
+  - `CKANEXT__MEDIAWIKI_CREDENTIALS_PATH` →
+    `CKANEXT__SMW__MEDIAWIKI_CREDENTIALS_PATH` (ckanext-Semantic-Media-Wiki)
+    and `CKANEXT__CRC1153__MEDIAWIKI_CREDENTIALS_PATH` (ckanext-crc1153);
+    both point to the same file.
+  - `CKANEXT__APACHEJENA__ENDPOINT` → `CKANEXT__CRC1153__APACHEJENA__ENDPOINT`
+    (ckanext-crc1153) and `CKANEXT__DCATAPCRC__APACHEJENA__ENDPOINT`
+    (ckanext-dcatapcrc).
 - `ckanext-crc1153`: 1.0.10 → 1.0.13
   - Fixed the resource modal and the extra-metadata workflow on CKAN 2.11.
 - `ckanext-dcatapcrc`: 1.0.3 → 1.0.6
@@ -52,8 +63,8 @@ git tags for the earlier history.
   config keys. Rename the variables in your `.env`:
   - `CKAN_SMW_BASE_URL` → `CKANEXT__SMW__BASEURL`
   - `CKAN_SMW_API_ENDPOINT` → `CKANEXT__SMW__MEDIAWIKI__API__ENDPOINT`
-  - `CKAN_SMW_CREDENTIALS_PATH` → `CKANEXT__SMW__MEDIAWIKI_CREDENTIALS_PATH`
-  - `CKAN_APACHE_JENA_ENDPOINT` → `CKANEXT__CRC1153__APACHEJENA__ENDPOINT`
+  - `CKAN_SMW_CREDENTIALS_PATH` → `CKANEXT__MEDIAWIKI_CREDENTIALS_PATH`
+  - `CKAN_APACHE_JENA_ENDPOINT` → `CKANEXT__APACHEJENA__ENDPOINT`
 
   `CKAN_SMW_USERNAME` and `CKAN_SMW_PASSWORD` are unchanged. The Jena endpoint
   is now applied whenever it is set, not only with `crc1153_dcat_profile`.
