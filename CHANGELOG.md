@@ -10,6 +10,8 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+## [3.5.0]
+
 ### Added
 
 - CI check `ci-config-keys` that fails if an installed extension reads or
@@ -38,19 +40,20 @@ git tags for the earlier history.
   `CKAN_SMW_USERNAME` and `CKAN_SMW_PASSWORD` are unchanged. The Jena endpoint
   is now applied whenever it is set, not only with `crc1153_dcat_profile`.
 - `ckanext-Semantic-Media-Wiki`: 3.1.1 → 3.2.1
-  - Config keys are now lowercase (for example `ckanext.smw.baseurl`,
-    `ckanext.smw.mediawiki.api.endpoint`, `ckanext.mediawiki_credentials_path`),
-    so they can be set via `CKANEXT__*` variables. The old names keep working
-    with a deprecation warning.
+  - All settings can now be set through environment variables. Existing
+    configuration files with the old names keep working and log a
+    deprecation warning.
+  - The misspelled setting name `ckanext.smw.mediaWiki.api.endpont` is
+    corrected to `ckanext.smw.mediawiki.api.endpoint`; the old spelling still
+    works.
 - `ckanext-crc1153`: 1.0.6 → 1.0.10
-  - The Apache Jena endpoint key is now lowercase
-    (`ckanext.apachejena.endpoint`); the old name keeps working.
-  - The MediaWiki credentials path is now read from the lowercase key
-    `ckanext.mediawiki_credentials_path`, shared with
-    `ckanext-Semantic-Media-Wiki`.
+  - Fixed a CSRF token error.
+  - The resource modal and the extra-metadata workflow work again on CKAN 2.11.
+  - The Apache Jena endpoint and the MediaWiki credentials path can now be set
+    through environment variables.
 - `ckanext-dcatapcrc`: 1.0.0 → 1.0.3
-  - The Apache Jena endpoint key is now lowercase
-    (`ckanext.apachejena.endpoint`); the old name keeps working.
+  - The plugin works when `ckan.plugins` is configured as a list.
+  - The Apache Jena endpoint can now be set through an environment variable.
 
 ## [3.4.0]
 
