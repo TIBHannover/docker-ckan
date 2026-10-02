@@ -10,34 +10,40 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+## [3.6.0]
+
 ### Changed
 
-- **Breaking:** the credentials path and Jena endpoint settings introduced in
-  3.5.0 now carry the name of the extension that reads them, because CKAN
-  accepts each config key from one extension only. Rename the variables in
-  your `.env`:
+- **Breaking:** two settings introduced in 3.5.0 are renamed, because every
+  config key may be provided by one extension only. Update your `.env` (and
+  any deployment that sets these variables) before rolling out this version:
   - `CKANEXT__MEDIAWIKI_CREDENTIALS_PATH` →
-    `CKANEXT__SMW__MEDIAWIKI_CREDENTIALS_PATH` (ckanext-Semantic-Media-Wiki)
-    and `CKANEXT__CRC1153__MEDIAWIKI_CREDENTIALS_PATH` (ckanext-crc1153);
-    both point to the same file.
+    `CKANEXT__SMW__MEDIAWIKI_CREDENTIALS_PATH` and
+    `CKANEXT__CRC1153__MEDIAWIKI_CREDENTIALS_PATH` (both point to the same
+    file)
   - `CKANEXT__APACHEJENA__ENDPOINT` → `CKANEXT__CRC1153__APACHEJENA__ENDPOINT`
-    (ckanext-crc1153) and `CKANEXT__DCATAPCRC__APACHEJENA__ENDPOINT`
-    (ckanext-dcatapcrc).
+    and `CKANEXT__DCATAPCRC__APACHEJENA__ENDPOINT`
+
+  The old names are no longer read; the container only logs a warning for
+  them.
 - `ckanext-crc1153`: 1.0.10 → 1.0.13
-  - Fixed the resource modal and the extra-metadata workflow on CKAN 2.11.
+  - The resource modal and the extra-metadata workflow work again on CKAN 2.11.
+  - The MediaWiki credentials path and the Jena endpoint use settings named
+    after the extension; the old mixed-case names still work and log a
+    deprecation warning.
 - `ckanext-dcatapcrc`: 1.0.3 → 1.0.6
-  - Fixed resource handling during dataset creation.
-  - Fixed the resource modal and the extra-metadata workflow on CKAN 2.11.
-  - Declared mixed-case legacy config keys instead of reading them directly.
-  - Switched Jena settings to plugin-id config keys.
+  - Creating a dataset with resources no longer fails.
+  - The resource modal and the extra-metadata workflow work again on CKAN 2.11.
+  - The Jena endpoint has its own setting for this extension.
 - `ckanext-Semantic-Media-Wiki`: 3.2.1 → 3.2.2
-  - Switched MediaWiki credentials to the `ckanext.smw` config namespace.
+  - The MediaWiki credentials path has its own setting for this extension.
 - `ckanext-organization-group`: 1.0.3 → 1.0.4
   - Fixed a CSRF token error.
 - `ckanext-resource-custom-metadata`: 1.0.3 → 1.0.5
   - Fixed a CSRF token error.
+  - Selecting a resource from the extra-metadata page works again on CKAN 2.11.
 - `ckanext-downloadall`: 2.0.3 → 2.0.4
-  - Fixed an error that prevented datasets from opening.
+  - Datasets open again instead of failing on an invalid resource route.
 
 ## [3.5.0]
 
