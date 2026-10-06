@@ -10,6 +10,16 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+### Changed
+
+- `ckanext-Semantic-Media-Wiki`: 3.2.2 → 3.3.0
+  - Uses the correct MediaWiki API and public page URLs for SFB1368.
+  - Checks linked SMW pages in batched API requests and handles redirects.
+  - Missing SMW pages are displayed as plain text instead of broken links.
+  - MediaWiki availability problems no longer prevent CKAN pages from loading.
+- `ckanext_sfb_layout`: 1.1.0 → 1.1.1
+  - Fixed the group layout when a group has no image.
+
 ## [3.6.0]
 
 ### Changed
