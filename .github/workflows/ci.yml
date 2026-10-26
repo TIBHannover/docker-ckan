@@ -18,6 +18,9 @@ jobs:
       - name: Create .env from example
         run: cp .env.example .env
 
+      - name: Lint
+        run: make lint
+
       # Enable all supported project plugins together for CI. close_for_guests
       # is intentionally excluded because it is currently broken.
       # "data_comparision" is the (misspelled) plugin name registered by

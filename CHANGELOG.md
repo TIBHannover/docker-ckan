@@ -10,6 +10,25 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+### Changed
+
+- `ckanext-Semantic-Media-Wiki`: 3.2.2 → 3.3.1
+  - Uses the correct MediaWiki API and public page URLs for SFB1368.
+  - Checks linked SMW pages in batched API requests and handles redirects.
+  - Displays missing SMW pages as plain text instead of broken links.
+  - Prevents MediaWiki availability problems from blocking CKAN pages.
+  - Removes sample SMW debug logging.
+- `ckanext_sfb_layout`: 1.1.0 → 1.1.1
+  - Fixes the group layout when a group has no image.
+- `ckanext-crc1153`: 1.0.13 → 1.0.14
+  - Adds backward compatibility for camel-case `crc1153` configuration keys.
+  - Makes datasets public by default during dataset creation.
+- `ckanext-multiuploader`: 2.1.0 → 2.2.0
+  - Adds optional individual descriptions for uploaded resources and links.
+  - Individual descriptions are disabled by default; no new variable is needed to retain the existing behavior.
+  - Set `CKANEXT__MULTIUPLOADER__INDIVIDUAL_DESCRIPTIONS=true` to enable the feature.
+  - When enabled, a description is required for every resource and link.
+
 ## [3.6.0]
 
 ### Changed
