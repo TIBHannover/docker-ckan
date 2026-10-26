@@ -71,7 +71,7 @@ RUN ckanext-install.sh TIBHannover/ckanext-cancel-dataset-creation 1.0.4 && \
     ckanext-install.sh bhavin2897/ckanext-downloadall 2.0.4 && \
     ckanext-install.sh TIBHannover/ckanext-sparql_interface 3.0.6 && \
     ckanext-install.sh TIBHannover/ckanext-dcatapcrc 1.0.6 && \
-    # ckanext-install.sh TIBHannover/ckanext-scheming 33a773d8b6abee5c04a85a89b69507f01a4d53bb
+
 # Apply temporary compatibility patches to the pinned extension sources.
 # Remove these patches after the corresponding fixes have tagged releases.
 # hadolint ignore=DL3003
