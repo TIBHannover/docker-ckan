@@ -10,7 +10,7 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
-#### Changed
+### Changed
 
 - `ckanext-Semantic-Media-Wiki`: 3.2.2 → 3.3.1
   - Uses the correct MediaWiki API and public page URLs for SFB1368.

@@ -70,7 +70,7 @@ RUN ckanext-install.sh TIBHannover/ckanext-cancel-dataset-creation 1.0.4 && \
     ckanext-install.sh TIBHannover/ckanext_sfb_layout 1.1.1 && \
     ckanext-install.sh bhavin2897/ckanext-downloadall 2.0.4 && \
     ckanext-install.sh TIBHannover/ckanext-sparql_interface 3.0.6 && \
-    ckanext-install.sh TIBHannover/ckanext-dcatapcrc 1.0.6 && \
+    ckanext-install.sh TIBHannover/ckanext-dcatapcrc 1.0.6
 
 # Apply temporary compatibility patches to the pinned extension sources.
 # Remove these patches after the corresponding fixes have tagged releases.
