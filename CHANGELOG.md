@@ -12,13 +12,27 @@ git tags for the earlier history.
 
 ### Changed
 
-- `ckanext-Semantic-Media-Wiki`: 3.2.2 → 3.3.0
+- `ckanext-Semantic-Media-Wiki`: 3.2.2 → 3.3.1
   - Uses the correct MediaWiki API and public page URLs for SFB1368.
   - Checks linked SMW pages in batched API requests and handles redirects.
   - Missing SMW pages are displayed as plain text instead of broken links.
   - MediaWiki availability problems no longer prevent CKAN pages from loading.
+  - Removed debugging for Sample SMW in log files
 - `ckanext_sfb_layout`: 1.1.0 → 1.1.1
   - Fixed the group layout when a group has no image.
+- `ckanext-crc1153`: 1.0.12 → 1.0.14
+  - Backward compatability for camel text, specifically for crc1153 config keys
+  - Made default visibility as Public while creating Dataset
+- `ckanext-dcatapcrc`: 1.0.5 → 1.0.6
+  - DCATAPCRC-owned Jena config key for the config variables
+- `ckanext-multiuploader`: 2.1.0 → 2.2.0
+  - New feature to enable multi-description, i.e., each resource has its own description
+  - It is a mandatory step for the user to give description for each resource 
+  - This feature can be disabled via the config. (boolean) 
+
+### Added
+- `ckanext-scheming`: trr375 branch 
+  - Initial testing for institutes and dataset metadata schema. Currently Commented out
 
 ## [3.6.0]
 
