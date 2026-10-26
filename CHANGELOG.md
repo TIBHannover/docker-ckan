@@ -10,24 +10,31 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+## [3.6.1]
+
+New datasets are now public by default. Make sure this matches your
+expectations before rolling out.
+
 ### Changed
 
-- `ckanext-Semantic-Media-Wiki`: 3.2.2 → 3.3.1
-  - Uses the correct MediaWiki API and public page URLs for SFB1368.
-  - Checks linked SMW pages in batched API requests and handles redirects.
-  - Displays missing SMW pages as plain text instead of broken links.
-  - Prevents MediaWiki availability problems from blocking CKAN pages.
-  - Removes sample SMW debug logging.
-- `ckanext_sfb_layout`: 1.1.0 → 1.1.1
-  - Fixes the group layout when a group has no image.
 - `ckanext-crc1153`: 1.0.13 → 1.0.14
-  - Adds backward compatibility for camel-case `crc1153` configuration keys.
-  - Makes datasets public by default during dataset creation.
+  - New datasets are created as public by default instead of private.
+  - Settings written with the old mixed-case key names keep working.
 - `ckanext-multiuploader`: 2.1.0 → 2.2.0
-  - Adds optional individual descriptions for uploaded resources and links.
-  - Individual descriptions are disabled by default; no new variable is needed to retain the existing behavior.
-  - Set `CKANEXT__MULTIUPLOADER__INDIVIDUAL_DESCRIPTIONS=true` to enable the feature.
-  - When enabled, a description is required for every resource and link.
+  - Each uploaded resource or link can now have its own description. This
+    is off by default; set `CKANEXT__MULTIUPLOADER__INDIVIDUAL_DESCRIPTIONS=true`
+    to enable it. When enabled, a description is required for every
+    resource and link.
+- `ckanext-Semantic-Media-Wiki`: 3.2.2 → 3.3.1
+  - Links to SMW pages use the correct MediaWiki address for SFB1368.
+  - Pages that do not exist in the wiki are shown as plain text instead of
+    broken links.
+  - If the MediaWiki server is unavailable, CKAN pages still load.
+  - Redirects in the wiki are followed, and linked pages are checked faster.
+- `ckanext_sfb_layout`: 1.1.0 → 1.1.1
+  - Group pages display correctly when a group has no image.
+- `nginx`: 1.31.0 → 1.31.7
+  - Updated web server base image.
 
 ## [3.6.0]
 
