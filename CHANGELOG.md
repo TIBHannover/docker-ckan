@@ -29,7 +29,7 @@ git tags for the earlier history.
 - `ckanext_sfb_layout`: 1.1.1 → 1.1.5
   - Improved logout visibility on CKAN 2.11 and kept layout webassets available
     when strict guest authentication is enabled.
-- `ckanext-sparql_interface`: 3.0.7 → 3.0.8
+- `ckanext-sparql_interface`: 3.0.6 → 3.0.8
   - Registered the CKAN 2.11 webassets and restored the SPARQL header layout.
 
 ### Fixed
@@ -38,28 +38,6 @@ git tags for the earlier history.
   cloned extension sources instead of being downloaded a second time from
   `raw.githubusercontent.com`. This avoids sporadic build failures with
   `501 Server Error: First fragment: Transfer-Encoding not supported`.
-
-### Changed
-
-- `ckanext-close-for-guests`: 1.1.8 → 1.1.9
-  - Enforced authentication consistently across CKAN pages, APIs, previews,
-    and resource downloads.
-- `ckanext-crc1153`: 1.0.14 → 1.0.15
-  - Fixed Material and Demonstrator metadata dropdown loading and restored the
-    Equipment step before Samples.
-- `ckanext-multiuploader`: 2.2.0 → 2.2.1
-  - Fixed CKAN 2.11 resource uploads for authorized dataset editors while
-    continuing to reject unauthorized uploads.
-- `ckanext-Semantic-Media-Wiki`: 3.3.1 → 3.3.3
-  - Restored the equipment and metadata workflows for SFB1368 and added CKAN
-    2.11 regression coverage.
-  - Fixed SFB1153/SFB1368 equipment image resolution and securely proxies
-    protected SMW images to authorized CKAN dataset editors.
-- `ckanext_sfb_layout`: 1.1.1 → 1.1.5
-  - Improved logout visibility on CKAN 2.11 and kept layout webassets available
-    when strict guest authentication is enabled.
-- `ckanext-sparql_interface`: 3.0.6 → 3.0.8
-  - Registered the CKAN 2.11 webassets and restored the SPARQL header layout.
 
 ## [3.6.1]
 
