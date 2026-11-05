@@ -10,6 +10,13 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+### Fixed
+
+- Image build: extension requirements are now installed from the already
+  cloned extension sources instead of being downloaded a second time from
+  `raw.githubusercontent.com`. This avoids sporadic build failures with
+  `501 Server Error: First fragment: Transfer-Encoding not supported`.
+
 ## [3.6.1]
 
 New datasets are now public by default. Make sure this matches your
