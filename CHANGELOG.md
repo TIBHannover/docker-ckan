@@ -10,27 +10,45 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+## [3.6.2]
+
+Security update of the CKAN base image and fixes for several extensions.
+Please read the notes on `ckan-base` 2.11.7 before rolling out: HTML in
+descriptions is now cleaned differently.
+
 ### Changed
 
+- `ckan-base`: 2.11.6 → 2.11.7
+  - Security update: closes several vulnerabilities in CKAN itself, among them
+    SQL injection in the datastore, cross-site scripting in resource views,
+    forgeable logins, and exposure of private dataset identifiers.
+  - HTML in descriptions and Markdown is now cleaned with a stricter library.
+    Unknown tags are removed instead of being shown as text, and the content
+    of script and style tags is dropped.
+  - Resource views that bring their own iframe can no longer be previewed in
+    the resource view form.
+  - Purging a dataset that has collaborators no longer fails.
 - `ckanext-close-for-guests`: 1.1.8 → 1.1.9
-  - Enforced authentication consistently across CKAN pages, APIs, previews,
-    and resource downloads.
+  - Login is now enforced consistently on all pages, API calls, previews, and
+    resource downloads.
 - `ckanext-crc1153`: 1.0.14 → 1.0.15
-  - Fixed Material and Demonstrator metadata dropdown loading and restored the
-    Equipment step before Samples.
+  - The Material and Demonstrator dropdowns in the metadata form load again.
+  - The Equipment step is shown before Samples again.
 - `ckanext-multiuploader`: 2.2.0 → 2.2.1
-  - Fixed CKAN 2.11 resource uploads for authorized dataset editors while
-    continuing to reject unauthorized uploads.
+  - Uploading resources works again for authorized dataset editors on CKAN
+    2.11; unauthorized uploads are still rejected.
 - `ckanext-Semantic-Media-Wiki`: 3.3.1 → 3.3.3
-  - Restored the equipment and metadata workflows for SFB1368 and added CKAN
-    2.11 regression coverage.
-  - Fixed SFB1153/SFB1368 equipment image resolution and securely proxies
-    protected SMW images to authorized CKAN dataset editors.
+  - The equipment and metadata workflows for SFB1368 work again.
+  - Equipment images for SFB1153 and SFB1368 are shown again. Protected wiki
+    images are only delivered to authorized dataset editors.
 - `ckanext_sfb_layout`: 1.1.1 → 1.1.5
-  - Improved logout visibility on CKAN 2.11 and kept layout webassets available
-    when strict guest authentication is enabled.
+  - The logout link is visible again on CKAN 2.11.
+  - The page layout still loads correctly when guest login is enforced.
 - `ckanext-sparql_interface`: 3.0.6 → 3.0.8
-  - Registered the CKAN 2.11 webassets and restored the SPARQL header layout.
+  - The SPARQL page loads its styles and scripts on CKAN 2.11 and shows the
+    header layout correctly again.
+- `nginx`: 1.31.7 → 1.31.8
+  - Updated web server base image.
 
 ### Fixed
 
