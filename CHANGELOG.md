@@ -10,6 +10,31 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+### Changed
+
+- `ckanext-crc1153`: 1.0.15 → 1.0.16
+  - Fixed CKAN 2.11 `package_show` compatibility across the metadata, search,
+    and DCAT workflows, preventing `Missing id` errors.
+  - Added regression coverage for the Extra Metadata page and dataset update
+    workflow.
+- `ckanext-dcatapcrc`: 1.0.6 → 1.0.7
+  - Fixed CKAN 2.11 `package_show` compatibility for dataset and resource
+    synchronization while preserving the CKAN authorization context.
+  - Fuseki update failures now identify whether DELETE or INSERT failed and
+    how many requests completed, without logging credentials or RDF metadata.
+- `ckanext-Semantic-Media-Wiki`: 3.3.3 → 3.3.4
+  - Fixed CKAN 2.11 `package_show` compatibility in the Equipment, Sample,
+    and Protocol workflows.
+- `ckanext-Dataset-Reference`: 3.0.3 → 3.0.4
+  - Fixed `Missing id` errors when viewing, adding, editing, or deleting
+    dataset references on CKAN 2.11.
+- `ckanext-sfb-search`: 1.0.1 → 1.0.2
+  - Fixed CKAN 2.11 dataset lookups and authorization checks used by column,
+    publication, sample, and resource-metadata search.
+- `ckanext-data-comparison`: 1.1.0 → 1.1.1
+  - Fixed CKAN 2.11 dataset lookups in comparison pages, generated resource
+    links, and table titles.
+
 ## [3.6.2]
 
 Security update of the CKAN base image and fixes for several extensions.
