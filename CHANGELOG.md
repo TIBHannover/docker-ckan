@@ -10,30 +10,29 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
+## [3.6.3]
+
+Fixes "Missing id" errors on CKAN 2.11 in several extensions.
+
 ### Changed
 
 - `ckanext-crc1153`: 1.0.15 → 1.0.16
-  - Fixed CKAN 2.11 `package_show` compatibility across the metadata, search,
-    and DCAT workflows, preventing `Missing id` errors.
-  - Added regression coverage for the Extra Metadata page and dataset update
-    workflow.
+  - The Extra Metadata page and saving dataset changes work again without
+    "Missing id" errors.
+  - Search and DCAT synchronization no longer fail on the same error.
 - `ckanext-dcatapcrc`: 1.0.6 → 1.0.7
-  - Fixed CKAN 2.11 `package_show` compatibility for dataset and resource
-    synchronization while preserving the CKAN authorization context.
-  - Fuseki update failures now identify whether DELETE or INSERT failed and
-    how many requests completed, without logging credentials or RDF metadata.
+  - Datasets and resources are synchronized to the triple store again.
+  - If an update to the triple store fails, the error now says whether the
+    DELETE or the INSERT request failed, without exposing credentials or
+    metadata.
 - `ckanext-Semantic-Media-Wiki`: 3.3.3 → 3.3.4
-  - Fixed CKAN 2.11 `package_show` compatibility in the Equipment, Sample,
-    and Protocol workflows.
+  - The Equipment, Sample, and Protocol workflows work again.
 - `ckanext-Dataset-Reference`: 3.0.3 → 3.0.4
-  - Fixed `Missing id` errors when viewing, adding, editing, or deleting
-    dataset references on CKAN 2.11.
+  - Dataset references can be viewed, added, edited, and deleted again.
 - `ckanext-sfb-search`: 1.0.1 → 1.0.2
-  - Fixed CKAN 2.11 dataset lookups and authorization checks used by column,
-    publication, sample, and resource-metadata search.
+  - Column, publication, sample, and resource-metadata search work again.
 - `ckanext-data-comparison`: 1.1.0 → 1.1.1
-  - Fixed CKAN 2.11 dataset lookups in comparison pages, generated resource
-    links, and table titles.
+  - Comparison pages, resource links, and table titles load again.
 
 ## [3.6.2]
 
