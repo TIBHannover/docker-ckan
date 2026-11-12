@@ -9,7 +9,9 @@ Entries before this file was introduced are not reconstructed here; see the
 git tags for the earlier history.
 
 ## [Unreleased]
-
+- `ckanext-dataset-transfer`: 1.0.2 → 1.0.4
+  - added CKAN 2.10/2.11 CSRF compatibility, configurable LUH targets, and safer duplicate and incomplete-transfer handling.
+  - fixed destination publication by omitting the source dataset ID and allowing the destination CKAN to generate its own ID. 
 ### Changed
 
 - `ckanext-crc1153`: 1.0.15 → 1.0.16
