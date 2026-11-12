@@ -10,29 +10,30 @@ git tags for the earlier history.
 
 ## [Unreleased]
 
-## [3.6.3]
-
-Fixes "Missing id" errors on CKAN 2.11 in several extensions.
-
 ### Changed
 
 - `ckanext-crc1153`: 1.0.15 → 1.0.16
-  - The Extra Metadata page and saving dataset changes work again without
-    "Missing id" errors.
-  - Search and DCAT synchronization no longer fail on the same error.
+  - Fixed CKAN 2.11 `package_show` compatibility across the metadata, search,
+    and DCAT workflows, preventing `Missing id` errors.
+  - Added regression coverage for the Extra Metadata page and dataset update
+    workflow.
 - `ckanext-dcatapcrc`: 1.0.6 → 1.0.7
-  - Datasets and resources are synchronized to the triple store again.
-  - If an update to the triple store fails, the error now says whether the
-    DELETE or the INSERT request failed, without exposing credentials or
-    metadata.
+  - Fixed CKAN 2.11 `package_show` compatibility for dataset and resource
+    synchronization while preserving the CKAN authorization context.
+  - Fuseki update failures now identify whether DELETE or INSERT failed and
+    how many requests completed, without logging credentials or RDF metadata.
 - `ckanext-Semantic-Media-Wiki`: 3.3.3 → 3.3.4
-  - The Equipment, Sample, and Protocol workflows work again.
+  - Fixed CKAN 2.11 `package_show` compatibility in the Equipment, Sample,
+    and Protocol workflows.
 - `ckanext-Dataset-Reference`: 3.0.3 → 3.0.4
-  - Dataset references can be viewed, added, edited, and deleted again.
+  - Fixed `Missing id` errors when viewing, adding, editing, or deleting
+    dataset references on CKAN 2.11.
 - `ckanext-sfb-search`: 1.0.1 → 1.0.2
-  - Column, publication, sample, and resource-metadata search work again.
+  - Fixed CKAN 2.11 dataset lookups and authorization checks used by column,
+    publication, sample, and resource-metadata search.
 - `ckanext-data-comparison`: 1.1.0 → 1.1.1
-  - Comparison pages, resource links, and table titles load again.
+  - Fixed CKAN 2.11 dataset lookups in comparison pages, generated resource
+    links, and table titles.
 
 ## [3.6.2]
 
