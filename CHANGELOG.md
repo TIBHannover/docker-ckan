@@ -8,11 +8,11 @@ Entries before this file was introduced are not reconstructed here; see the
 [GitHub releases](https://github.com/TIBHannover/docker-ckan/releases) and
 git tags for the earlier history.
 
-## [Unreleased]
+### Changed
 - `ckanext-dataset-transfer`: 1.0.2 → 1.0.4
   - added CKAN 2.10/2.11 CSRF compatibility, configurable LUH targets, and safer duplicate and incomplete-transfer handling.
   - fixed destination publication by omitting the source dataset ID and allowing the destination CKAN to generate its own ID. 
-### Changed
+## 3.6.3
 
 - `ckanext-crc1153`: 1.0.15 → 1.0.16
   - Fixed CKAN 2.11 `package_show` compatibility across the metadata, search,
