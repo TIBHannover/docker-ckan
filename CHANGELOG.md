@@ -8,7 +8,7 @@ Entries before this file was introduced are not reconstructed here; see the
 [GitHub releases](https://github.com/TIBHannover/docker-ckan/releases) and
 git tags for the earlier history.
 
-## [Unreleased]
+## [3.6.5]
 
 ### Changed
 
@@ -31,7 +31,7 @@ git tags for the earlier history.
     - SFB1368: `CKANEXT__DATASET_TRANSFER__TARGET_ORGANIZATION=sfb_1368`
   - The destination API and public URLs remain configurable and default to the LUH repository.
 
-## 3.6.3
+## [3.6.3]
 
 - `ckanext-crc1153`: 1.0.15 → 1.0.16
   - Fixed CKAN 2.11 `package_show` compatibility across the metadata, search,
