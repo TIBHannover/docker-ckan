@@ -8,10 +8,29 @@ Entries before this file was introduced are not reconstructed here; see the
 [GitHub releases](https://github.com/TIBHannover/docker-ckan/releases) and
 git tags for the earlier history.
 
+## [Unreleased]
+
 ### Changed
+
+- `ckanext-dataset-transfer`: 1.0.4 → 1.0.5
+  - Restored backward-compatible destination organisation detection for SFB1153 and SFB1368, supporting both production root paths (`/sfb1153/{{LANG}}`, `/sfb1368/{{LANG}}`) and legacy paths.
+  - Explicit `ckanext.dataset_transfer.target_organization` configuration takes precedence over automatic detection.
+  - Automatic detection is restricted to the original LUH repository. Custom destinations and TRR375 require an explicitly configured destination organisation.
+  - Added regression tests for legacy and production root paths to prevent future compatibility regressions.
+
+## [3.6.4]
+
+### Changed
+
 - `ckanext-dataset-transfer`: 1.0.2 → 1.0.4
-  - added CKAN 2.10/2.11 CSRF compatibility, configurable LUH targets, and safer duplicate and incomplete-transfer handling.
-  - fixed destination publication by omitting the source dataset ID and allowing the destination CKAN to generate its own ID. 
+  - Added CKAN 2.10/2.11 CSRF compatibility, configurable LUH targets, and safer duplicate and incomplete-transfer handling.
+  - Fixed destination publication by omitting the source dataset ID, allowing the destination CKAN to generate its own ID.
+  - **Configuration change:** Introduced `ckanext.dataset_transfer.target_organization` to explicitly select the destination organisation. In v1.0.4, this setting is mandatory and replaces the previous `ckan.root_path`-based detection.
+  - Deployment configuration examples:
+    - SFB1153: `CKANEXT__DATASET_TRANSFER__TARGET_ORGANIZATION=sfb_1153`
+    - SFB1368: `CKANEXT__DATASET_TRANSFER__TARGET_ORGANIZATION=sfb_1368`
+  - The destination API and public URLs remain configurable and default to the LUH repository.
+
 ## 3.6.3
 
 - `ckanext-crc1153`: 1.0.15 → 1.0.16
