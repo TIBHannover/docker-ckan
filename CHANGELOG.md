@@ -8,6 +8,12 @@ Entries before this file was introduced are not reconstructed here; see the
 [GitHub releases](https://github.com/TIBHannover/docker-ckan/releases) and
 git tags for the earlier history.
 
+## [Unreleased]
+
+### Changed
+-  `ckanext-dataset-transfer`: 1.1.1 → 1.1.2
+  - Fixing consent validation and Continue navigation for RADAR and LUH publishing.
+
 ## [3.6.6]
 
 ### Changed
