@@ -8,6 +8,28 @@ Entries before this file was introduced are not reconstructed here; see the
 [GitHub releases](https://github.com/TIBHannover/docker-ckan/releases) and
 git tags for the earlier history.
 
+## [3.6.6]
+
+### Changed
+
+- `ckanext-dataset-transfer`: 1.0.5 → 1.1.1
+  - Added a RADAR4Ing publication workflow alongside the existing LUH
+    destination, including metadata review, consent and confirmation steps,
+    RADAR DataCite XML generation, local schema validation, resource upload,
+    remote validation, reconciliation, and duplicate-publication protection.
+  - Added structured creator, contributor, affiliation, funding, licence, and
+    related-identifier mapping, with ROR and ORCID validation.
+  - Added destination-aware publication results so LUH and RADAR transfers can
+    be distinguished without a database migration.
+  - Added secure server-side RADAR authentication, sanitized API logging, and corrected RADAR dataset URLs.
+
+- `ckanext-crc1153`: 1.0.16 → 1.0.17
+  - Empty special-search requests are ignored instead of being submitted as
+    searches.
+- `ckanext-resource-custom-metadata`: 1.0.5 → 1.0.6
+  - Unsupported Excel metadata headers are skipped safely instead of causing
+    metadata processing to fail.
+
 ## [3.6.5]
 
 ### Changed
