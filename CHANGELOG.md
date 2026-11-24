@@ -12,7 +12,7 @@ git tags for the earlier history.
 
 ### Changed
 
-- `ckanext-dataset-transfer`: 1.0.5 → 1.1.0
+- `ckanext-dataset-transfer`: 1.0.5 → 1.1.1
   - Added a RADAR4Ing publication workflow alongside the existing LUH
     destination, including metadata review, consent and confirmation steps,
     RADAR DataCite XML generation, local schema validation, resource upload,
@@ -21,6 +21,7 @@ git tags for the earlier history.
     related-identifier mapping, with ROR and ORCID validation.
   - Added destination-aware publication results so LUH and RADAR transfers can
     be distinguished without a database migration.
+  - Added secure server-side RADAR authentication, sanitized API logging, and corrected RADAR dataset URLs.
 
 - `ckanext-crc1153`: 1.0.16 → 1.0.17
   - Empty special-search requests are ignored instead of being submitted as
